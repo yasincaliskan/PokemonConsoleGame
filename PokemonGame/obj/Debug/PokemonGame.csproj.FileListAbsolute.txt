@@ -1,0 +1,7 @@
+C:\Users\yasin\source\repos\PokemonGame\PokemonGame\obj\Debug\PokemonGame.csprojAssemblyReference.cache
+C:\Users\yasin\source\repos\PokemonGame\PokemonGame\obj\Debug\PokemonGame.csproj.CoreCompileInputs.cache
+C:\Users\yasin\source\repos\PokemonGame\PokemonGame\bin\Debug\PokemonGame.exe.config
+C:\Users\yasin\source\repos\PokemonGame\PokemonGame\bin\Debug\PokemonGame.exe
+C:\Users\yasin\source\repos\PokemonGame\PokemonGame\bin\Debug\PokemonGame.pdb
+C:\Users\yasin\source\repos\PokemonGame\PokemonGame\obj\Debug\PokemonGame.exe
+C:\Users\yasin\source\repos\PokemonGame\PokemonGame\obj\Debug\PokemonGame.pdb

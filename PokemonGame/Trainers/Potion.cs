@@ -9,6 +9,10 @@ namespace PokemonGame.Trainers
 {
     public class Potion:Item
     {
+        public Potion()
+        {
+
+        }
         public void UsePotion(Pokemon pokemon)
         {
             pokemon.Health += 20; //health value??

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokemonGame.GameContext;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,17 @@ namespace PokemonGame
     {
         static void Main(string[] args)
         {
+            int choice;
+            Game game = new Game();
+
+            choice = game.StartGame();
+
+            if(choice == 1)
+            {
+                game.NewGame();
+            }
+
+            Console.ReadLine();
         }
     }
 }

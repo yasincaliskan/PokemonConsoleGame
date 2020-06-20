@@ -13,11 +13,23 @@ namespace PokemonGame.Trainers
         public List<Pokemon> Pokemons { get; set; }
         public List<Item> Items { get; set; }
 
+        public Trainer()
+        {
+            this.Pokemons = new List<Pokemon>();
+            //Pokeball pokeballs = new Pokeball();
+            //Potion potions = new Potion();
+
+            //this.Items.Add(pokeballs);
+            //this.Items.Add(potions);
+        }
         public Trainer(string nickname)
         {
             this.Nickname = nickname;
-            this.Items.Add(new Pokeball());
-            this.Items.Add(new Potion());
+            this.Pokemons = new List<Pokemon>();
+            //Pokeball pokeballs = new Pokeball();
+            //Potion potions = new Potion();
+            //this.Items.Add(pokeballs);
+            //this.Items.Add(potions);
         }
     }
 }

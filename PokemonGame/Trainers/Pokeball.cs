@@ -9,15 +9,23 @@ namespace PokemonGame.Trainers
 {
     public class Pokeball:Item
     {
+        public Pokeball()
+        {
+
+        }
         public Pokemon ThrowTheBall(Pokemon pokemon, Trainer trainer)
         {
             if(pokemon.Health < 25 && pokemon.Health > 0)
             {
                 trainer.Pokemons.Add(pokemon);
             }
+            else
+            {
+                pokemon = null;
+            }
 
             this.Quantity--;
-            return new Pokemon();
+            return pokemon;
         }
     }
 }

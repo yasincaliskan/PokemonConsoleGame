@@ -18,6 +18,24 @@ namespace PokemonGame.Pokemons
         public int Level { get; set; }
         public PokemonType Type { get; set; }
 
+        public Pokemon(string name)
+        {
+            this.Name = name;
+        }
+
+        public Pokemon(string name, double attack, double defense, double speed, double hitpoint, PokemonType type, double health = 50, int level = 1)
+        {
+            this.Name = name;
+            this.Attack = attack;
+            this.Defense = defense;
+            this.Speed = speed;
+            this.HitPoint = hitpoint;
+            this.EXP = 0;
+            this.Health = health;
+            this.Level = level;
+            this.Type = type;
+        }
+
         public double DoAttack() //Maybe be virtual
         {
             Random rnd = new Random();
