@@ -10,6 +10,9 @@ namespace PokemonGame.Trainers
     {
         public int Quantity { get; set; }
 
-        //methods
+        public Item()
+        {
+            this.Quantity = 3;
+        }
     }
 }

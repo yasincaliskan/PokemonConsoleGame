@@ -13,9 +13,11 @@ namespace PokemonGame.Trainers
         public List<Pokemon> Pokemons { get; set; }
         public List<Item> Items { get; set; }
 
-        public Trainer()
+        public Trainer(string nickname)
         {
-           
+            this.Nickname = nickname;
+            this.Items.Add(new Pokeball());
+            this.Items.Add(new Potion());
         }
     }
 }

@@ -14,21 +14,31 @@ namespace PokemonGame.Pokemons
         public double Speed { get; set; }
         public double HitPoint { get; set; }
         public double EXP { get; set; }
+        public double Health { get; set; }
         public int Level { get; set; }
-        public Types Type { get; set; }
+        public PokemonType Type { get; set; }
 
         public double DoAttack() //Maybe be virtual
         {
             Random rnd = new Random();
             int Power = 50;
-            if (Types.AdvantageAttack)
+            double Modifier;
+            if (this.Type.AdvantageAttack != null)
             {
-
+                Modifier = 5 * rnd.Next(1); //TODO Effectivenes * Random (0.85-1)
             }
-            double Modifier =  * rnd.Next(1); //TODO Effectivenes * Random (0.85-1)
+            else if (this.Type.DisadvantageAttack != null)
+            {
+                Modifier = -5 * rnd.Next(1);
+            }
+            else
+            {
+                Modifier = rnd.Next(1);
+            }
 
             double Damage = (((((2 * Level) / 5) + 2) * Power * (Attack / Defense) / 50) + 2) * Modifier;
             return Damage;
         }
+
     }
 }
