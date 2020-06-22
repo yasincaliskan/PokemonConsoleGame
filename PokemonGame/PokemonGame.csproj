@@ -48,9 +48,6 @@
     <Compile Include="Pokemons\PokemonType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Trainers\Item.cs" />
-    <Compile Include="Trainers\Pokeball.cs" />
-    <Compile Include="Trainers\Potion.cs" />
     <Compile Include="Trainers\Trainer.cs" />
   </ItemGroup>
   <ItemGroup>

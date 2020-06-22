@@ -81,7 +81,7 @@ namespace PokemonGame.GameContext
             }
 
             Console.Write("Select a Pokémon: ");
-            choice = Convert.ToInt32(Console.ReadLine())-1;
+            choice = Convert.ToInt32(Console.ReadLine()) - 1;
             Pokemon initialPokemon = initialPokemons[choice];
             trainer.Pokemons.Add(initialPokemon);
             Console.WriteLine($"Okay! {trainer.Pokemons[0].Name} is your first Pokémon!");
@@ -105,11 +105,11 @@ namespace PokemonGame.GameContext
             Console.WriteLine("1. Fight\n2. Run");
             choice = Convert.ToInt32(Console.ReadLine());
 
-            if(choice == 1)
+            if (choice == 1)
             {
                 Fight(wildPokemon);
             }
-            else if(choice == 2)
+            else if (choice == 2)
             {
                 Run();
             }
@@ -118,27 +118,29 @@ namespace PokemonGame.GameContext
         public void Fight(Pokemon wildPokemon)
         {
             Pokemon selectedPokemon = SelectPokemon();
-            if(selectedPokemon.Speed > wildPokemon.Speed)
+            if (selectedPokemon.Speed > wildPokemon.Speed)
             {
-                while(selectedPokemon.Health > 0 || wildPokemon.Health > 0)
+                while (selectedPokemon.Health > 0 || wildPokemon.Health > 0)
                 {
                     choice = FightMenu();
-                    if(choice == 1)
+                    if (choice == 1)
                     {
-                    double trainerDamage = selectedPokemon.DoAttack();
-                    wildPokemon.Health -= trainerDamage;
-                    Console.WriteLine($"{selectedPokemon.Name} damaged {trainerDamage}! {wildPokemon.Name} {wildPokemon.Health} lives health.");
+                        double trainerDamage = selectedPokemon.DoAttack();
+                        wildPokemon.Health -= trainerDamage;
+                        Console.WriteLine($"{selectedPokemon.Name} damaged {trainerDamage}! {wildPokemon.Name} {wildPokemon.Health} lives health.");
                     }
-                    else if(choice == 2)
+                    else if (choice == 2)
                     {
                         GoToBag();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please choose 1 or 2.");
                     }
 
                     double wildPokemonDamage = wildPokemon.DoAttack();
                     selectedPokemon.Health -= wildPokemonDamage;
                     Console.WriteLine($"{wildPokemon.Name} damaged {wildPokemonDamage}! {selectedPokemon.Name} {selectedPokemon.Health} lives health.");
-
-
                 }
             }
         }
@@ -151,13 +153,21 @@ namespace PokemonGame.GameContext
             return choice;
         }
 
-        public void GoToBag()
+        public void GoToBag(Pokemon wildPokemon)
         {
-            int index = 1;
             Console.WriteLine("Select item:");
-            foreach (var item in trainer.Items)
+            Console.WriteLine($"1. Pokeball - {trainer.Pokeballs}\n 2. Potion - {trainer.Potions}");
+            choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
             {
-                Console.WriteLine($"{index}. {item.}");
+                case 1:
+                    trainer.UsePokeball(wildPokemon);
+                    break;
+                case 2:
+                    trainer.UsePotion();
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -169,7 +179,7 @@ namespace PokemonGame.GameContext
         public Pokemon SelectPokemon()
         {
             int index = 1;
-            Console.WriteLine("Select a Pokémon:");
+            Console.WriteLine("Select a Pokemon:");
             foreach (var item in trainer.Pokemons)
             {
                 Console.WriteLine($"{index}. {item.Name}");
