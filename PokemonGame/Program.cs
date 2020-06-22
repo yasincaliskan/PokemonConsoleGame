@@ -20,6 +20,10 @@ namespace PokemonGame
             {
                 game.NewGame();
             }
+            else if(choice == 2)
+            {
+                //Load game
+            }
 
             Console.ReadLine();
         }
