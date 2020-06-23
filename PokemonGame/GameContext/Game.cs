@@ -80,11 +80,29 @@ namespace PokemonGame.GameContext
                 index++;
             }
 
-            Console.Write("Select a Pokémon: ");
+            Console.Write("Select a Pokemon: ");
             choice = Convert.ToInt32(Console.ReadLine()) - 1;
             Pokemon initialPokemon = initialPokemons[choice];
             trainer.Pokemons.Add(initialPokemon);
             Console.WriteLine($"Okay! {trainer.Pokemons[0].Name} is your first Pokémon!");
+            choice = GameMenu();
+
+            switch (choice)
+            {
+                case 1:
+                    HuntWildPokemon(trainer);
+                    break;
+                case 2:
+                    //GoToPokeCenter();
+                    break;
+                case 3:
+                    //GoToArena();
+                case 0:
+                    //MainMenu();
+                    break;
+                default:
+                    break;
+            }
 
 
             return choice;
@@ -95,7 +113,14 @@ namespace PokemonGame.GameContext
 
         }
 
-        public void HuntWildPokemon()
+        public int GameMenu()
+        {
+            Console.WriteLine("1. Hunt Pokemon\n 2. Go to PokeCenter\n 3. Go to Arena\n...\n 0. Back to Main Menu");
+            choice = Convert.ToInt32(Console.ReadLine());
+            return choice;
+        }
+
+        public void HuntWildPokemon(Trainer trainer)
         {
             List<Pokemon> wildPokemons = CreateWildPokemons();
             int randomNumber = rnd.Next(0, wildPokemons.Count);
@@ -107,7 +132,7 @@ namespace PokemonGame.GameContext
 
             if (choice == 1)
             {
-                Fight(wildPokemon);
+                Fight(wildPokemon, trainer);
             }
             else if (choice == 2)
             {
@@ -115,7 +140,7 @@ namespace PokemonGame.GameContext
             }
         }
 
-        public void Fight(Pokemon wildPokemon)
+        public void Fight(Pokemon wildPokemon, Trainer trainer)
         {
             Pokemon selectedPokemon = SelectPokemon();
             if (selectedPokemon.Speed > wildPokemon.Speed)
@@ -131,7 +156,7 @@ namespace PokemonGame.GameContext
                     }
                     else if (choice == 2)
                     {
-                        GoToBag();
+                        GoToBag(wildPokemon, trainer);
                     }
                     else
                     {
@@ -153,7 +178,7 @@ namespace PokemonGame.GameContext
             return choice;
         }
 
-        public void GoToBag(Pokemon wildPokemon)
+        public void GoToBag(Pokemon wildPokemon, Trainer trainer)
         {
             Console.WriteLine("Select item:");
             Console.WriteLine($"1. Pokeball - {trainer.Pokeballs}\n 2. Potion - {trainer.Potions}");
@@ -161,10 +186,10 @@ namespace PokemonGame.GameContext
             switch (choice)
             {
                 case 1:
-                    trainer.UsePokeball(wildPokemon);
+                    trainer.UsePokeball(wildPokemon, trainer);
                     break;
                 case 2:
-                    trainer.UsePotion();
+                    trainer.UsePotion(trainer);
                     break;
                 default:
                     break;
