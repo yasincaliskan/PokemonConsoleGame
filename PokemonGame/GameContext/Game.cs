@@ -1,4 +1,5 @@
-﻿using PokemonGame.Pokemons;
+﻿using PokemonGame.Places;
+using PokemonGame.Pokemons;
 using PokemonGame.Trainers;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,9 @@ namespace PokemonGame.GameContext
         int choice;
 
         Trainer trainer = new Trainer();
+        //Creation creation = new Creation();
         Random rnd = new Random();
+        Pokecenter pokecenter = new Pokecenter();
 
         public List<Pokemon> StartingPokemons()
         {
@@ -54,15 +57,20 @@ namespace PokemonGame.GameContext
             return wildPokemons;
         }
 
-
-        public int StartGame()
+        public void StartGame()
         {
             Console.WriteLine("Welcome to Pokémon world!");
             Console.WriteLine("1. New Game");
             Console.WriteLine("2. Load Game");
             Console.Write("->");
             choice = Convert.ToInt32(Console.ReadLine());
-            return choice;
+            if(choice == 1)
+            {
+                NewGame();
+            }else if(choice == 2)
+            {
+                LoadGame();
+            }
         }
 
         public int NewGame()
@@ -93,7 +101,7 @@ namespace PokemonGame.GameContext
                     HuntWildPokemon(trainer);
                     break;
                 case 2:
-                    //GoToPokeCenter();
+                    pokecenter.GoToPokecenter(trainer);
                     break;
                 case 3:
                     //GoToArena();
@@ -103,7 +111,6 @@ namespace PokemonGame.GameContext
                 default:
                     break;
             }
-
 
             return choice;
         }
@@ -115,7 +122,7 @@ namespace PokemonGame.GameContext
 
         public int GameMenu()
         {
-            Console.WriteLine("1. Hunt Pokemon\n 2. Go to PokeCenter\n 3. Go to Arena\n...\n 0. Back to Main Menu");
+            Console.WriteLine("1. Hunt Pokemon\n2. Go to PokeCenter\n3. Go to Arena\n...\n0. Back to Main Menu");
             choice = Convert.ToInt32(Console.ReadLine());
             return choice;
         }
@@ -136,7 +143,7 @@ namespace PokemonGame.GameContext
             }
             else if (choice == 2)
             {
-                Run();
+                GameMenu();
             }
         }
 
@@ -145,14 +152,14 @@ namespace PokemonGame.GameContext
             Pokemon selectedPokemon = SelectPokemon();
             if (selectedPokemon.Speed > wildPokemon.Speed)
             {
-                while (selectedPokemon.Health > 0 || wildPokemon.Health > 0)
+                while (selectedPokemon.CurrentHealth > 0 || wildPokemon.CurrentHealth > 0)
                 {
                     choice = FightMenu();
                     if (choice == 1)
                     {
                         double trainerDamage = selectedPokemon.DoAttack();
-                        wildPokemon.Health -= trainerDamage;
-                        Console.WriteLine($"{selectedPokemon.Name} damaged {trainerDamage}! {wildPokemon.Name} {wildPokemon.Health} lives health.");
+                        wildPokemon.CurrentHealth -= trainerDamage;
+                        Console.WriteLine($"{selectedPokemon.Name} damaged {trainerDamage}! {wildPokemon.Name} {wildPokemon.CurrentHealth} lives health.");
                     }
                     else if (choice == 2)
                     {
@@ -164,8 +171,8 @@ namespace PokemonGame.GameContext
                     }
 
                     double wildPokemonDamage = wildPokemon.DoAttack();
-                    selectedPokemon.Health -= wildPokemonDamage;
-                    Console.WriteLine($"{wildPokemon.Name} damaged {wildPokemonDamage}! {selectedPokemon.Name} {selectedPokemon.Health} lives health.");
+                    selectedPokemon.CurrentHealth -= wildPokemonDamage;
+                    Console.WriteLine($"{wildPokemon.Name} damaged {wildPokemonDamage}! {selectedPokemon.Name} {selectedPokemon.CurrentHealth} lives health.");
                 }
             }
         }
@@ -194,11 +201,6 @@ namespace PokemonGame.GameContext
                 default:
                     break;
             }
-        }
-
-        public void Run()
-        {
-
         }
 
         public Pokemon SelectPokemon()

@@ -13,6 +13,7 @@ namespace PokemonGame.Trainers
         public List<Pokemon> Pokemons { get; set; }
         public int Pokeballs { get; set; }
         public int Potions { get; set; }
+        public List<Rosette> Rosettes { get; set; }
 
         public Trainer()
         {
@@ -38,13 +39,20 @@ namespace PokemonGame.Trainers
                 Console.WriteLine($"{index}. {item.Name}");
             }
             choice = Convert.ToInt32(Console.ReadLine());
-            trainer.Pokemons[choice - 1].Health += 30;
+            if(trainer.Pokemons[choice - 1].CurrentHealth + 30 < trainer.Pokemons[choice - 1].MaxHealth)
+            {
+                trainer.Pokemons[choice - 1].CurrentHealth += 30;
+            }
+            else
+            {
+                trainer.Pokemons[choice - 1].CurrentHealth = trainer.Pokemons[choice - 1].MaxHealth;
+            }
             trainer.Potions--;
         }
         
         public void UsePokeball(Pokemon wildPokemon, Trainer trainer)
         {
-            if(wildPokemon.Health < 20 || wildPokemon.Health > 0)
+            if(wildPokemon.CurrentHealth < 20 || wildPokemon.CurrentHealth > 0)
             {
                 Console.WriteLine($"You catched {wildPokemon.Name}!");
                 trainer.Pokemons.Add(wildPokemon);

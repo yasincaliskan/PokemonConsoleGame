@@ -14,7 +14,8 @@ namespace PokemonGame.Pokemons
         public double Speed { get; set; }
         public double HitPoint { get; set; }
         public double EXP { get; set; }
-        public double Health { get; set; }
+        public double MaxHealth { get; set; }
+        public double CurrentHealth { get; set; }
         public int Level { get; set; }
         public PokemonType Type { get; set; }
 
@@ -31,7 +32,8 @@ namespace PokemonGame.Pokemons
             this.Speed = speed;
             this.HitPoint = hitpoint;
             this.EXP = 0;
-            this.Health = health;
+            this.CurrentHealth = health;
+            this.MaxHealth = health;
             this.Level = level;
             this.Type = type;
         }
