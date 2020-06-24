@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Trainers
 {
-    public class Trainer :Player, IPlayer
+    public class Trainer :Player
     {
         public void UsePotion()
         {

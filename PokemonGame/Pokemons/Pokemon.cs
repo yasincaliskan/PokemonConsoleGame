@@ -6,19 +6,36 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Pokemons
 {
-    public class Pokemon:IPokemon
+    public delegate void EvolveEventHandler(object sender, Pokemon args);
+    public class Pokemon
     {
+        public event EvolveEventHandler Evolve;
         public string Name { get; set; }
         public double Attack { get; set; }
         public double Defense { get; set; }
         public double Speed { get; set; }
         public double HitPoint { get; set; }
-        public double EXP { get; set; }
+        public double EXP
+        {
+            get { return EXP; }
+            set
+            {
+                EXP = value;
+                if (value >= Level * 10)
+                {
+                    //Evolving(this, );
+                }
+            }
+        }
         public double MaxHealth { get; set; }
         public double CurrentHealth { get; set; }
         public bool Status { get; set; }
-        public int Level { get; set; }
         public PokemonType Type { get; set; }
+        public int Level
+        {
+            get; set;
+        }
+
 
         public Pokemon(string name)
         {
@@ -40,7 +57,7 @@ namespace PokemonGame.Pokemons
             this.Status = true;
         }
 
-        public double DoAttack() // interface method
+        public double CalculateDamage() // interface method
         {
             Random rnd = new Random();
             int Power = 50;
@@ -62,9 +79,14 @@ namespace PokemonGame.Pokemons
             return Damage;
         }
 
-        public void Evolve(Pokemon pokemon)
+        public void Evolving(Pokemon pokemon)
         {
-            
+            this.Level += 1;
+            this.MaxHealth += 30 + this.Level;
+            this.Attack += this.Level * 2;
+            this.Defense += this.Level * 1.5;
+
         }
     }
 }
+

@@ -21,7 +21,7 @@ namespace PokemonGame.GameContext.Actions
             {
                 while (selectedPokemon.CurrentHealth > 0 || wildPokemon.CurrentHealth > 0)
                 {
-                    Console.WriteLine("1. Attack\n 2. Go to Bag");
+                    Console.WriteLine("1. Attack\n2. Go to Bag");
                     Console.WriteLine("->");
                     choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
@@ -37,7 +37,7 @@ namespace PokemonGame.GameContext.Actions
                             break;
                     }
 
-                    double wildPokemonDamage = wildPokemon.DoAttack();
+                    double wildPokemonDamage = wildPokemon.CalculateDamage();
                     selectedPokemon.CurrentHealth -= wildPokemonDamage;
                     Console.WriteLine($"{wildPokemon.Name} damaged {wildPokemonDamage}! {selectedPokemon.Name} {selectedPokemon.CurrentHealth} lives health.");
 
@@ -58,29 +58,52 @@ namespace PokemonGame.GameContext.Actions
 
         public static void Battle(Trainer trainer, Opponent opponent)
         {
+            Random rnd = new Random();
             Pokemon trainerPokemon = Menu.SelectPokemon(trainer);
             Pokemon opponentPokemon = Menu.SelectPokemon(opponent);
-            Console.WriteLine("1. Attack\n2. Change Pokemon\n 0. Leave the match");
-            choice = Convert.ToInt32(Console.ReadLine());
-            switch (choice)
+            while (trainerPokemon.CurrentHealth > 0 || opponentPokemon.CurrentHealth > 0)
             {
-                case 1:
-                    Attack(trainerPokemon, opponentPokemon);
-                    break;
-                case 2:
-                    trainerPokemon = Menu.SelectPokemon(trainer);
-                    break;
-                case 0:
-                    Menu.MainActions(trainer);
-                    break;
+                Console.WriteLine("1. Attack\n2. Change Pokemon\n 0. Leave the match");
+                choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Attack(trainerPokemon, opponentPokemon);
+                        break;
+                    case 2:
+                        trainerPokemon = Menu.SelectPokemon(trainer);
+                        break;
+                    case 0:
+                        Menu.MainActions(trainer);
+                        break;
+                }
+            }
+            if(trainerPokemon.CurrentHealth <= 0)
+            {
+                trainerPokemon.Status = false;
+                Console.WriteLine($"{trainerPokemon.Name} passed out!\nYou should go to PokeCenter!");
+            }
+            {
+                opponentPokemon.Status = false;
+                Console.WriteLine($"{opponentPokemon.Name} passed out! You can not catch it.");
+                opponentPokemon.EXP += rnd.Next(10, 20);
             }
         }
 
-        public static void Attack(Pokemon selectedPokemon, Pokemon opponentPokemon)
+        public static void Attack(Pokemon trainerPokemon, Pokemon opponentPokemon)
         {
-            double trainerDamage = selectedPokemon.DoAttack();
+            double trainerDamage = trainerPokemon.CalculateDamage();
             opponentPokemon.CurrentHealth -= trainerDamage;
-            Console.WriteLine($"{selectedPokemon.Name} damaged {trainerDamage}! {opponentPokemon.Name} {opponentPokemon.CurrentHealth} lives health.");
+            Console.WriteLine($"{trainerPokemon.Name} damaged {trainerDamage}! {opponentPokemon.Name} {opponentPokemon.CurrentHealth} lives health.");
+        }
+
+        public static void OpponentAttack(Pokemon trainerPokemon, Pokemon opponentPokemon)
+        {
+            double opponentDamage = opponentPokemon.CalculateDamage();
+            trainerPokemon.CurrentHealth -= opponentDamage;
+            Console.WriteLine($"{opponentPokemon.Name} damaged {opponentDamage}! {trainerPokemon.Name} {trainerPokemon.CurrentHealth} lives health.");
+
+
         }
 
         public static void HuntWildPokemon(Trainer trainer)
@@ -94,6 +117,6 @@ namespace PokemonGame.GameContext.Actions
             Battle(wildPokemon, trainer);
         }
 
-        
+
     }
 }

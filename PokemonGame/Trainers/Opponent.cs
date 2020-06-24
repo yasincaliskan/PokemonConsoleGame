@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Trainers
 {
-    public class Opponent :Player, IPlayer
+    public class Opponent :Player
     {
         public void ShowRosettes()
         {
@@ -18,9 +18,6 @@ namespace PokemonGame.Trainers
             }
         }
 
-        public void UsePotion()
-        {
-            
-        }
+        
     }
 }
