@@ -7,8 +7,45 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.GameContext
 {
-    public class Creation
+    public static class Creation
     {
-        //create game objects
+        public static List<Pokemon> StartingPokemons()
+        {
+            List<Pokemon> InitialPokemons = new List<Pokemon>();
+            Pokemon initialBulbasaur = new Pokemon("Bulbasaur");
+            Pokemon initialSquirtle = new Pokemon("Squirtle");
+            Pokemon initialCharmander = new Pokemon("Charmander");
+            InitialPokemons.Add(initialBulbasaur);
+            InitialPokemons.Add(initialSquirtle);
+            InitialPokemons.Add(initialCharmander);
+
+            return InitialPokemons;
+        }
+
+        public static List<PokemonType> CreateTypes(
+            string name,
+            List<PokemonType> AdvantangeAttack,
+            List<PokemonType> DisadvantangeAttack,
+            List<PokemonType> AdvatageDefense,
+            List<PokemonType> DisadvatangeDefense
+            )
+        {
+            List<PokemonType> PokemonTypes = new List<PokemonType>();
+            PokemonType pokemonType = new PokemonType(name, AdvantangeAttack, DisadvantangeAttack, AdvatageDefense, DisadvatangeDefense);
+            PokemonTypes.Add(pokemonType);
+            return PokemonTypes;
+        }
+
+        public static List<Pokemon> CreateWildPokemons()
+        {
+            List<Pokemon> wildPokemons = new List<Pokemon>();
+            Pokemon Pidgey = new Pokemon("Pidgey");
+            Pokemon Rattata = new Pokemon("Rattata");
+
+            wildPokemons.Add(Pidgey);
+            wildPokemons.Add(Rattata);
+
+            return wildPokemons;
+        }
     }
 }

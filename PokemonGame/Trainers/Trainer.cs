@@ -7,60 +7,50 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Trainers
 {
-    public class Trainer
+    public class Trainer :Player, IPlayer
     {
-        public string Nickname { get; set; }
-        public List<Pokemon> Pokemons { get; set; }
-        public int Pokeballs { get; set; }
-        public int Potions { get; set; }
-        public List<Rosette> Rosettes { get; set; }
-
-        public Trainer()
-        {
-            this.Pokemons = new List<Pokemon>();
-            this.Pokeballs = 3;
-            this.Potions = 2;
-        }
-        public Trainer(string nickname)
-        {
-            this.Nickname = nickname;
-            this.Pokemons = new List<Pokemon>();
-            this.Pokeballs = 3;
-            this.Potions = 2;
-        }
-
-        public void UsePotion(Trainer trainer)
+        public void UsePotion()
         {
             int index = 1;
             int choice;
             Console.WriteLine("Use potion to: ");
-            foreach (var item in trainer.Pokemons)
+            foreach (var item in this.Pokemons)
             {
                 Console.WriteLine($"{index}. {item.Name}");
             }
             choice = Convert.ToInt32(Console.ReadLine());
-            if(trainer.Pokemons[choice - 1].CurrentHealth + 30 < trainer.Pokemons[choice - 1].MaxHealth)
+            if (this.Pokemons[choice - 1].CurrentHealth + 30 < this.Pokemons[choice - 1].MaxHealth)
             {
-                trainer.Pokemons[choice - 1].CurrentHealth += 30;
+                this.Pokemons[choice - 1].CurrentHealth += 30;
             }
             else
             {
-                trainer.Pokemons[choice - 1].CurrentHealth = trainer.Pokemons[choice - 1].MaxHealth;
+                this.Pokemons[choice - 1].CurrentHealth = this.Pokemons[choice - 1].MaxHealth;
             }
-            trainer.Potions--;
+            this.Potions--;
         }
-        
-        public void UsePokeball(Pokemon wildPokemon, Trainer trainer)
+
+        public void UsePokeball(Pokemon wildPokemon)
         {
-            if(wildPokemon.CurrentHealth < 20 || wildPokemon.CurrentHealth > 0)
+            if (wildPokemon.CurrentHealth < 20 || wildPokemon.CurrentHealth > 0)
             {
                 Console.WriteLine($"You catched {wildPokemon.Name}!");
-                trainer.Pokemons.Add(wildPokemon);
+                this.Pokemons.Add(wildPokemon);
                 this.Pokeballs--;
             }
             else
             {
                 Console.WriteLine($"You can not catch {wildPokemon.Name}");
+            }
+        }
+
+        public void ShowRosettes()
+        {
+            int index = 1;
+            foreach (var item in this.Rosettes)
+            {
+                Console.WriteLine($"{index}. {item.Name} - [{item.Arena}]");
+                index++;
             }
         }
     }

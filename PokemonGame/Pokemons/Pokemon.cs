@@ -16,6 +16,7 @@ namespace PokemonGame.Pokemons
         public double EXP { get; set; }
         public double MaxHealth { get; set; }
         public double CurrentHealth { get; set; }
+        public bool Status { get; set; }
         public int Level { get; set; }
         public PokemonType Type { get; set; }
 
@@ -36,6 +37,7 @@ namespace PokemonGame.Pokemons
             this.MaxHealth = health;
             this.Level = level;
             this.Type = type;
+            this.Status = true;
         }
 
         public double DoAttack() // interface method

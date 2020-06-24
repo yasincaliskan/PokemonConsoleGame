@@ -1,4 +1,5 @@
 ﻿using PokemonGame.GameContext;
+using PokemonGame.GameContext.Navigations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,7 @@ namespace PokemonGame
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
-
-            game.StartGame();
+            Menu.StartGame();
 
             Console.ReadLine();
         }

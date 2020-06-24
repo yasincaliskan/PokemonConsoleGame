@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PokemonGame.GameContext.Actions
+namespace PokemonGame.Trainers
 {
-    public class HuntWildPokemon
+    interface IPlayer
     {
-        
+        void UsePotion();
+        void ShowRosettes();
     }
 }

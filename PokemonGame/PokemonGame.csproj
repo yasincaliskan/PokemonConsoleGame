@@ -46,8 +46,10 @@
     <Compile Include="GameContext\Actions\Fight.cs" />
     <Compile Include="GameContext\Actions\HuntWildPokemon.cs" />
     <Compile Include="GameContext\Actions\JoinTournament.cs" />
+    <Compile Include="GameContext\Actions\UseItem.cs" />
     <Compile Include="GameContext\Creation.cs" />
     <Compile Include="GameContext\Game.cs" />
+    <Compile Include="GameContext\Navigations\Menu.cs" />
     <Compile Include="Places\Arena.cs" />
     <Compile Include="Places\Pokecenter.cs" />
     <Compile Include="Pokemons\IPokemon.cs" />
@@ -55,6 +57,9 @@
     <Compile Include="Pokemons\PokemonType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trainers\IPlayer.cs" />
+    <Compile Include="Trainers\Opponent.cs" />
+    <Compile Include="Trainers\Player.cs" />
     <Compile Include="Trainers\Rosette.cs" />
     <Compile Include="Trainers\Trainer.cs" />
   </ItemGroup>
