@@ -15,6 +15,7 @@ namespace PokemonGame.GameContext.Actions
 
         public static void Battle(Pokemon wildPokemon, Trainer trainer)
         {
+            Random rnd = new Random();
             Pokemon selectedPokemon = Menu.SelectPokemon(trainer);
             if (selectedPokemon.Speed > wildPokemon.Speed)
             {
@@ -26,9 +27,7 @@ namespace PokemonGame.GameContext.Actions
                     switch (choice)
                     {
                         case 1:
-                            double trainerDamage = selectedPokemon.DoAttack();
-                            wildPokemon.CurrentHealth -= trainerDamage;
-                            Console.WriteLine($"{selectedPokemon.Name} damaged {trainerDamage}! {wildPokemon.Name} {wildPokemon.CurrentHealth} lives health.");
+                            Attack(selectedPokemon, wildPokemon);
                             break;
                         case 2:
                             UseItem.GoToBag(wildPokemon, trainer);
@@ -51,9 +50,37 @@ namespace PokemonGame.GameContext.Actions
                     {
                         wildPokemon.Status = false;
                         Console.WriteLine($"{wildPokemon.Name} passed out! You can not catch it.");
+                        selectedPokemon.EXP += rnd.Next(10, 20);
                     }
                 }
             }
+        }
+
+        public static void Battle(Trainer trainer, Opponent opponent)
+        {
+            Pokemon trainerPokemon = Menu.SelectPokemon(trainer);
+            Pokemon opponentPokemon = Menu.SelectPokemon(opponent);
+            Console.WriteLine("1. Attack\n2. Change Pokemon\n 0. Leave the match");
+            choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Attack(trainerPokemon, opponentPokemon);
+                    break;
+                case 2:
+                    trainerPokemon = Menu.SelectPokemon(trainer);
+                    break;
+                case 0:
+                    Menu.MainActions(trainer);
+                    break;
+            }
+        }
+
+        public static void Attack(Pokemon selectedPokemon, Pokemon opponentPokemon)
+        {
+            double trainerDamage = selectedPokemon.DoAttack();
+            opponentPokemon.CurrentHealth -= trainerDamage;
+            Console.WriteLine($"{selectedPokemon.Name} damaged {trainerDamage}! {opponentPokemon.Name} {opponentPokemon.CurrentHealth} lives health.");
         }
 
         public static void HuntWildPokemon(Trainer trainer)
@@ -65,7 +92,8 @@ namespace PokemonGame.GameContext.Actions
 
             Console.WriteLine($"Hey! It's a {wildPokemon.Name}.");
             Battle(wildPokemon, trainer);
-
         }
+
+        
     }
 }

@@ -90,7 +90,7 @@ namespace PokemonGame.GameContext.Navigations
                     break;
             }
         }
-        public static Pokemon SelectPokemon(Trainer trainer)
+        public static Pokemon SelectPokemon(Player trainer)
         {
             int index = 1;
             Console.WriteLine("Select a Pokemon:");
@@ -105,7 +105,7 @@ namespace PokemonGame.GameContext.Navigations
             return selectedPokemon;
         }
 
-        public static void Battle(Pokemon wildPokemon, Trainer trainer)
+        public static void Battle(Pokemon wildPokemon, Player trainer)
         {
             Console.WriteLine("1. Fight\n2. Go to Bag");
             Console.WriteLine("->");

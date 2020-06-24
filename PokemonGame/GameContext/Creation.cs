@@ -22,17 +22,11 @@ namespace PokemonGame.GameContext
             return InitialPokemons;
         }
 
-        public static List<PokemonType> CreateTypes(
-            string name,
-            List<PokemonType> AdvantangeAttack,
-            List<PokemonType> DisadvantangeAttack,
-            List<PokemonType> AdvatageDefense,
-            List<PokemonType> DisadvatangeDefense
-            )
+        public static List<PokemonType> CreateTypes()
         {
+            //read type list
             List<PokemonType> PokemonTypes = new List<PokemonType>();
-            PokemonType pokemonType = new PokemonType(name, AdvantangeAttack, DisadvantangeAttack, AdvatageDefense, DisadvatangeDefense);
-            PokemonTypes.Add(pokemonType);
+
             return PokemonTypes;
         }
 

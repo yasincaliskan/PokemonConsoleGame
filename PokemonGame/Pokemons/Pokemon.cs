@@ -44,21 +44,21 @@ namespace PokemonGame.Pokemons
         {
             Random rnd = new Random();
             int Power = 50;
-            double Modifier;
-            if (this.Type.AdvantageAttack != null)
-            {
-                Modifier = 5 * rnd.Next(1); //TODO: Effectivenes * Random (0.85-1)
-            }
-            else if (this.Type.DisadvantageAttack != null)
-            {
-                Modifier = -5 * rnd.Next(1);
-            }
-            else
-            {
-                Modifier = rnd.Next(1);
-            }
-
-            double Damage = (((((2 * Level) / 5) + 2) * Power * (Attack / Defense) / 50) + 2) * Modifier;
+            double modifier;
+            //if (this.Type.AdvantageAttack != null)
+            //{
+            //    Modifier = 5 * rnd.Next(1); //TODO: Effectivenes * Random (0.85-1)
+            //}
+            //else if (this.Type.DisadvantageAttack != null)
+            //{
+            //    Modifier = -5 * rnd.Next(1);
+            //}
+            //else
+            //{
+            //    Modifier = rnd.Next(1);
+            //}
+            modifier = rnd.Next(1);
+            double Damage = (((((2 * Level) / 5) + 2) * Power * (Attack / Defense) / 50) + 2) * modifier;
             return Damage;
         }
 
