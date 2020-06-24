@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Pokemons
 {
-    public class Pokemon
+    public class Pokemon:IPokemon
     {
         public string Name { get; set; }
         public double Attack { get; set; }
@@ -38,14 +38,14 @@ namespace PokemonGame.Pokemons
             this.Type = type;
         }
 
-        public double DoAttack() //Maybe be virtual
+        public double DoAttack() // interface method
         {
             Random rnd = new Random();
             int Power = 50;
             double Modifier;
             if (this.Type.AdvantageAttack != null)
             {
-                Modifier = 5 * rnd.Next(1); //TODO Effectivenes * Random (0.85-1)
+                Modifier = 5 * rnd.Next(1); //TODO: Effectivenes * Random (0.85-1)
             }
             else if (this.Type.DisadvantageAttack != null)
             {
@@ -60,5 +60,9 @@ namespace PokemonGame.Pokemons
             return Damage;
         }
 
+        public void Evolve(Pokemon pokemon)
+        {
+            
+        }
     }
 }
