@@ -56,7 +56,7 @@ namespace PokemonGame.GameContext.Actions
             }
         }
 
-        public static void Battle(Trainer trainer, Opponent opponent)
+        public static void Battle(Trainer trainer, Player opponent)
         {
             Random rnd = new Random();
             Pokemon trainerPokemon = Menu.SelectPokemon(trainer);
@@ -78,7 +78,7 @@ namespace PokemonGame.GameContext.Actions
                         break;
                 }
             }
-            if(trainerPokemon.CurrentHealth <= 0)
+            if (trainerPokemon.CurrentHealth <= 0)
             {
                 trainerPokemon.Status = false;
                 Console.WriteLine($"{trainerPokemon.Name} passed out!\nYou should go to PokeCenter!");

@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Trainers
 {
-    public class Trainer :Player
+    public class Trainer : Player
     {
+        public int Pokeballs { get; set; }
+        public int Potions { get; set; }
+
+        public Trainer()
+        {
+            this.Pokeballs = 3;
+            this.Potions = 2;
+        }
         public void UsePotion()
         {
             int index = 1;
@@ -40,17 +48,7 @@ namespace PokemonGame.Trainers
             }
             else
             {
-                Console.WriteLine($"You can not catch {wildPokemon.Name}");
-            }
-        }
-
-        public void ShowRosettes()
-        {
-            int index = 1;
-            foreach (var item in this.Rosettes)
-            {
-                Console.WriteLine($"{index}. {item.Name} - [{item.Arena}]");
-                index++;
+                Console.WriteLine($"You can not catch {wildPokemon.Name}! ");
             }
         }
     }

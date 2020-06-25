@@ -6,18 +6,12 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Trainers
 {
-    public class Opponent :Player
+    public class Opponent : Player
     {
-        public void ShowRosettes()
+        public Opponent(string name)
         {
-            int index = 1;
-            foreach (var item in this.Rosettes)
-            {
-                Console.WriteLine($"{index}. {item.Name}");
-                index++;
-            }
+            this.Nickname = name;
         }
 
-        
     }
 }

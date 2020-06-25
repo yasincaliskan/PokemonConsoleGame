@@ -1,4 +1,5 @@
 ﻿using PokemonGame.GameContext.Actions;
+using PokemonGame.Places;
 using PokemonGame.Pokemons;
 using PokemonGame.Trainers;
 using System;
@@ -45,7 +46,7 @@ namespace PokemonGame.GameContext.Navigations
                 index++;
             }
 
-            Console.Write("Select a Pokemon: ");
+            Console.WriteLine("Select a Pokemon: ");
             Console.Write("->");
             choice = Convert.ToInt32(Console.ReadLine()) - 1;
             Pokemon initialPokemon = initialPokemons[choice];
@@ -76,10 +77,10 @@ namespace PokemonGame.GameContext.Navigations
                     Fight.HuntWildPokemon(trainer);
                     break;
                 case 2:
-                    //pokecenter
+                    Places.Pokecenter.GoToPokecenter(trainer);
                     break;
                 case 3:
-                    //arena
+                    SelectArena(trainer);
                     break;
                 case 0:
                     SaveAndQuit();
@@ -105,7 +106,23 @@ namespace PokemonGame.GameContext.Navigations
             return selectedPokemon;
         }
 
-        public static void Battle(Pokemon wildPokemon, Player trainer)
+        public static void SelectArena(Trainer trainer)
+        {
+            int index = 1;
+            List<Arena> arenaList = Creation.CreateArenas();
+            Console.WriteLine("Select a Arena: ");
+            foreach (var item in arenaList)
+            {
+                Console.WriteLine($"{index}. {item.Name}");
+                index++;
+            }
+            Console.Write("->");
+            choice = Convert.ToInt32(Console.ReadLine());
+            Arena selectedArena = arenaList[choice - 1];
+            selectedArena.GoToArena(trainer);
+        }
+
+        public static void Battle(Pokemon wildPokemon, Trainer trainer)
         {
             Console.WriteLine("1. Fight\n2. Go to Bag");
             Console.WriteLine("->");

@@ -1,4 +1,5 @@
-﻿using PokemonGame.Pokemons;
+﻿using PokemonGame.GameContext.Navigations;
+using PokemonGame.Pokemons;
 using PokemonGame.Trainers;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Places
 {
-    public class Pokecenter
+    public static class Pokecenter
     {
-        public void GoToPokecenter(Trainer trainer)
+        public static void GoToPokecenter(Trainer trainer)
         {
             Console.WriteLine("Welcome to PokeCenter!");
-            Console.WriteLine("1. Rehabilitation\n2. But Item");
+            Console.WriteLine("1. Rehabilitation\n2. Buy Item");
             int choice = Convert.ToInt32(Console.ReadLine());
             if(choice == 1)
             {
@@ -24,7 +25,7 @@ namespace PokemonGame.Places
                 BuyItem(trainer);
             }
         }
-        public void Rehabilitation(Trainer trainer)
+        public static void Rehabilitation(Trainer trainer)
         {
             List<Pokemon> trainerPokemons = new List<Pokemon>();
             trainerPokemons = trainer.Pokemons;
@@ -37,11 +38,39 @@ namespace PokemonGame.Places
                 Console.WriteLine($"{index}. {item.Name} - {item.CurrentHealth} HP");
                 index++;
             }
+
+            Menu.MainActions(trainer);
         }
 
-        public void BuyItem(Trainer trainer)
+        public static void BuyItem(Trainer trainer)
         {
-            //
+            int choice;
+            Console.WriteLine("1. Buy Pokeball\n2. Buy Potion\n0. Main Menu\n->");
+            choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    if (trainer.Pokeballs <= 6)
+                    {
+                        trainer.Pokeballs += 1;
+                        Console.WriteLine($"You bought 1 Pokeball. You have {trainer.Pokeballs} Pokeball.");
+                    }
+                    break;
+                case 2:
+                    if(trainer.Potions <= 5)
+                    {
+                        trainer.Potions += 1;
+                        Console.WriteLine($"You bought 1 Potion. You have {trainer.Potions} Potion.");
+                    }
+                    break;
+                default:
+                    Menu.MainActions(trainer);
+                    break;
+            }
+
+            Menu.MainActions(trainer);
+
         }
     }
 }

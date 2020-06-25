@@ -11,8 +11,7 @@ namespace PokemonGame.Trainers
     {
         public string Nickname { get; set; }
         public List<Pokemon> Pokemons { get; set; }
-        public int Pokeballs { get; set; }
-        public int Potions { get; set; }
+    
         public List<Rosette> Rosettes { get; set; }
 
         public Player()
@@ -23,8 +22,16 @@ namespace PokemonGame.Trainers
         {
             this.Nickname = nickname;
             this.Pokemons = new List<Pokemon>();
-            this.Pokeballs = 3;
-            this.Potions = 2;
+            
+        }
+        public void ShowRosettes()
+        {
+            int index = 1;
+            foreach (var item in this.Rosettes)
+            {
+                Console.WriteLine($"{index}. {item.Name} - [{item.Arena}]");
+                index++;
+            }
         }
     }
 }
