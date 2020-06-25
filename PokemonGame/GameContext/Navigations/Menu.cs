@@ -48,8 +48,8 @@ namespace PokemonGame.GameContext.Navigations
 
             Console.WriteLine("Select a Pokemon: ");
             Console.Write("->");
-            choice = Convert.ToInt32(Console.ReadLine()) - 1;
-            Pokemon initialPokemon = initialPokemons[choice];
+            choice = Convert.ToInt32(Console.ReadLine()) ;
+            Pokemon initialPokemon = initialPokemons[choice - 1];
             trainer.Pokemons.Add(initialPokemon);
             Console.WriteLine($"Okay! {trainer.Pokemons[0].Name} is your first Pokémon!");
             MainActions(trainer);
@@ -83,7 +83,7 @@ namespace PokemonGame.GameContext.Navigations
                     SelectArena(trainer);
                     break;
                 case 0:
-                    SaveAndQuit();
+                    DataOperation.SaveData(trainer);
                     break;
 
                 default:

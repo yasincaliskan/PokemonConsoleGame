@@ -19,9 +19,10 @@ namespace PokemonGame.Pokemons
         public bool Status { get; set; }
         public PokemonType Type { get; set; }
         public int Level { get; set; }
+        public double _EXP;
         public double EXP
         {
-            get { return EXP; }
+            get { return _EXP; }
             set
             {
                 EXP = value;

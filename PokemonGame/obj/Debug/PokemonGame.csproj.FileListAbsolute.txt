@@ -5,3 +5,6 @@ C:\Users\yasin\source\repos\PokemonGame\PokemonGame\bin\Debug\PokemonGame.exe
 C:\Users\yasin\source\repos\PokemonGame\PokemonGame\bin\Debug\PokemonGame.pdb
 C:\Users\yasin\source\repos\PokemonGame\PokemonGame\obj\Debug\PokemonGame.exe
 C:\Users\yasin\source\repos\PokemonGame\PokemonGame\obj\Debug\PokemonGame.pdb
+C:\Users\yasin\source\repos\PokemonGame\PokemonGame\bin\Debug\Newtonsoft.Json.dll
+C:\Users\yasin\source\repos\PokemonGame\PokemonGame\bin\Debug\Newtonsoft.Json.xml
+C:\Users\yasin\source\repos\PokemonGame\PokemonGame\obj\Debug\PokemonGame.csproj.CopyComplete

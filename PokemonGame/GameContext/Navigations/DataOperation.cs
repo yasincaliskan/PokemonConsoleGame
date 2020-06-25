@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PokemonGame.Trainers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +10,12 @@ namespace PokemonGame.GameContext.Navigations
 {
     public static class DataOperation
     {
-        public static void SaveData()
+        public static void SaveData(Trainer trainer)
         {
-
+            string savedFilePath = System.IO.Directory.GetCurrentDirectory();
+            Console.WriteLine(savedFilePath);
+            string json = JsonConvert.SerializeObject(trainer);
+            // System.IO.File.WriteAllText(savedFilePath + "\\deneme.json", json);
         }
         public static void LoadData()
         {
