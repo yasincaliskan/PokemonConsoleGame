@@ -10,16 +10,20 @@ namespace PokemonGame.GameContext.Navigations
 {
     public static class DataOperation
     {
+        static string savedFilePath = System.IO.Directory.GetCurrentDirectory();
         public static void SaveData(Trainer trainer)
         {
             string savedFilePath = System.IO.Directory.GetCurrentDirectory();
-            Console.WriteLine(savedFilePath);
             string json = JsonConvert.SerializeObject(trainer);
-            // System.IO.File.WriteAllText(savedFilePath + "\\deneme.json", json);
+            System.IO.File.WriteAllText(savedFilePath + "\\trainer.json", json);
         }
-        public static void LoadData()
+        public static Trainer LoadData()
         {
-
+            string json = System.IO.File.ReadAllText(savedFilePath + "\\trainer.json");
+            Console.WriteLine(json);
+            Trainer trainer = JsonConvert.DeserializeObject<Trainer>(json);
+            Console.WriteLine(trainer.ToString());
+            return trainer;
         }
     }
 }

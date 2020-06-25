@@ -51,5 +51,15 @@ namespace PokemonGame.Trainers
                 Console.WriteLine($"You can not catch {wildPokemon.Name}! ");
             }
         }
+
+        public override string ToString()
+        {
+            string trainerInfo = $"Name: {this.Nickname}\n";
+            foreach (var item in this.Pokemons)
+            {
+                trainerInfo += $"-{item.Name}";
+            }
+            return trainerInfo;
+        }
     }
 }

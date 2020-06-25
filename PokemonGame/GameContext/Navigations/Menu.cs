@@ -26,7 +26,8 @@ namespace PokemonGame.GameContext.Navigations
             }
             else if (choice == 2)
             {
-                LoadGame();
+                Trainer trainer = LoadGame();
+                MainActions(trainer);
             }
         }
 
@@ -55,9 +56,10 @@ namespace PokemonGame.GameContext.Navigations
             MainActions(trainer);
         }
 
-        public static void LoadGame()
+        public static Trainer LoadGame()
         {
-
+            //which trainer
+            return DataOperation.LoadData();
         }
 
         public static void SaveAndQuit()
