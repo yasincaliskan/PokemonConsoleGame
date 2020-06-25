@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Pokemons
 {
-    public delegate void EvolveEventHandler(object sender, Pokemon args);
+ 
     public class Pokemon
     {
-        //public event EvolveEventHandler Evolve;
         public string Name { get; set; }
         public double Attack { get; set; }
         public double Defense { get; set; }
@@ -28,7 +27,7 @@ namespace PokemonGame.Pokemons
                 EXP = value;
                 if (value >= Level * 10)
                 {
-                    //Evolving(this, );
+                    Evolve();
                 }
             }
         }
@@ -75,7 +74,7 @@ namespace PokemonGame.Pokemons
             return Damage;
         }
 
-        public void Evolving(Pokemon pokemon)
+        public void Evolve()
         {
             this.Level += 1;
             this.MaxHealth += 30 + this.Level;
