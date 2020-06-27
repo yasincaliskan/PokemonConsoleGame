@@ -34,7 +34,7 @@ namespace PokemonGame.GameContext.Navigations
         {
             string json = System.IO.File.ReadAllText(savedFilePath + "\\savedFiles\\pokedex.json");
             List<Pokemon> allPokemons = JsonConvert.DeserializeObject<List<Pokemon>>(json);
-           
+
             return allPokemons;
         }
 

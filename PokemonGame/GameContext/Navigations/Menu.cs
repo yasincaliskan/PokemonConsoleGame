@@ -38,7 +38,7 @@ namespace PokemonGame.GameContext.Navigations
             Console.Write("Please enter your nickname: ");
             trainer.Nickname = Console.ReadLine();
             Console.WriteLine($"Hi {trainer.Nickname}!");
-            Console.WriteLine("Please select your first pokemon from Professor Oak.");
+            Console.WriteLine("Please select your first Pokemon from Professor Oak.");
 
             List<Pokemon> initialPokemons = Creation.StartingPokemons();
             foreach (var item in initialPokemons)

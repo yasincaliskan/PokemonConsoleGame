@@ -7,14 +7,11 @@
       "chinese": "杰尼龟",
       "french": "Carapuce"
     },
-    "type": {
+    "type": 
       [
         "Water"
       ],
-      "immunes": [],
-      "weaknesses": [],
-      "strengths": []
-    },
+      
     "base": {
       "HP": 44,
       "Attack": 48,
@@ -32,15 +29,11 @@
       "chinese": "妙蛙种子",
       "french": "Bulbizarre"
     },
-    "type": {
+    "type": 
       [
         "Grass",
         "Poison"
       ],
-      "immunes": [],
-      "weaknesses": [],
-      "strengths": []
-    },
     "base": {
       "HP": 45,
       "Attack": 49,
@@ -58,14 +51,10 @@
       "chinese": "小火龙",
       "french": "Salamèche"
     },
-    "type": {
+    "type": 
       [
         "Fire"
       ],
-      "immunes": [],
-      "weaknesses": [],
-      "strengths": []
-    },
     "base": {
       "HP": 39,
       "Attack": 52,
@@ -83,14 +72,10 @@
       "chinese": "皮卡丘",
       "french": "Pikachu"
     },
-    "type": {
+    "type": 
       [
         "Electric"
       ],
-      "immunes": [],
-      "weaknesses": [],
-      "strengths": []
-    },
     "base": {
       "HP": 35,
       "Attack": 55,

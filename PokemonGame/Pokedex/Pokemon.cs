@@ -12,26 +12,23 @@ namespace PokemonGame.Pokemons
     {
         public int id { get; set; }
         public Language name { get; set; }
-        public List<string> types { get; set; }
-        public Base baseProps { get; set; }
+        public List<string> type { get; set; }
+        public BaseProp baseProps { get; set; }
         public double MaxHealth { get; set; }
         public double CurrentHealth { get; set; }
         public bool Status { get; set; }
         public int Level { get; set; }
         public double EXP { get; set; }
 
+        
         public Pokemon()
         {
-
-        }
-        public Pokemon(double health = 50, int level = 1)
-        {
             //this.types = new List<PokemonType>();
-            this.baseProps = new Base();
+            
             this.EXP = 0;
-            this.CurrentHealth = health;
-            this.MaxHealth = health;
-            this.Level = level;
+            this.CurrentHealth = 50;
+            this.MaxHealth = 50;
+            this.Level = 1;
             this.Status = true;
         }
 
@@ -49,9 +46,9 @@ namespace PokemonGame.Pokemons
         {
             double effectValue = 0.0;
 
-            foreach (var current in this.types)
+            foreach (var current in this.type)
             {
-                foreach (var opponent in opponentPokemon.types)
+                foreach (var opponent in opponentPokemon.type)
                 {
                     //if (current.immunes.Contains(opponent.name))
                     //{
@@ -69,7 +66,7 @@ namespace PokemonGame.Pokemons
                     //{
                     //    effectValue = 1;
                     //}
-
+                   
                 }
             }
             return effectValue;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Pokedex
 {
-    public class Base
+    public class BaseProp
     {
         public int HP { get; set; }
         public int Attack { get; set; }
@@ -14,5 +14,10 @@ namespace PokemonGame.Pokedex
         public int SpAttack { get; set; }
         public int SpDefense { get; set; }
         public int Speed { get; set; }
+
+        public BaseProp()
+        {
+
+        }
     }
 }
