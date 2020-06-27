@@ -26,7 +26,7 @@ namespace PokemonGame.GameContext.Navigations
             }
             else if (choice == 2)
             {
-                Trainer trainer = LoadGame();
+                Trainer trainer = DataOperation.LoadGame();
                 MainActions(trainer);
             }
         }
@@ -43,7 +43,7 @@ namespace PokemonGame.GameContext.Navigations
             List<Pokemon> initialPokemons = Creation.StartingPokemons();
             foreach (var item in initialPokemons)
             {
-                Console.WriteLine($"{index}. {item.Name}");
+                Console.WriteLine($"{index}. {item.name.english}");
                 index++;
             }
 
@@ -52,21 +52,11 @@ namespace PokemonGame.GameContext.Navigations
             choice = Convert.ToInt32(Console.ReadLine()) ;
             Pokemon initialPokemon = initialPokemons[choice - 1];
             trainer.Pokemons.Add(initialPokemon);
-            Console.WriteLine($"Okay! {trainer.Pokemons[0].Name} is your first Pokémon!");
+            Console.WriteLine($"Okay! {trainer.Pokemons[0].name.english} is your first Pokémon!");
             MainActions(trainer);
         }
 
-        public static Trainer LoadGame()
-        {
-            //which trainer
-            return DataOperation.LoadData();
-        }
-
-        public static void SaveAndQuit()
-        {
-
-        }
-
+    
         public static void MainActions(Trainer trainer)
         {
             Console.WriteLine("1. Hunt Pokemon\n2. Go to PokeCenter\n3. Go to Arena\n0. Save and Quit");
@@ -85,7 +75,7 @@ namespace PokemonGame.GameContext.Navigations
                     SelectArena(trainer);
                     break;
                 case 0:
-                    DataOperation.SaveData(trainer);
+                    DataOperation.SaveGame(trainer);
                     break;
 
                 default:
@@ -99,7 +89,7 @@ namespace PokemonGame.GameContext.Navigations
             Console.WriteLine("Select a Pokemon:");
             foreach (var item in trainer.Pokemons)
             {
-                Console.WriteLine($"{index}. {item.Name}");
+                Console.WriteLine($"{index}. {item.name.english}");
             }
             Console.Write("->");
             choice = Convert.ToInt32(Console.ReadLine());

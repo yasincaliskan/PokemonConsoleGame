@@ -54,6 +54,8 @@
     <Compile Include="GameContext\Navigations\Menu.cs" />
     <Compile Include="Places\Arena.cs" />
     <Compile Include="Places\Pokecenter.cs" />
+    <Compile Include="Pokedex\Base.cs" />
+    <Compile Include="Pokedex\Language.cs" />
     <Compile Include="Pokedex\Pokemon.cs" />
     <Compile Include="Pokedex\PokemonType.cs" />
     <Compile Include="Program.cs" />

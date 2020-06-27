@@ -35,7 +35,7 @@ namespace PokemonGame.Places
             {
                 int index = 1;
                 item.CurrentHealth = item.MaxHealth;
-                Console.WriteLine($"{index}. {item.Name} - {item.CurrentHealth} HP");
+                Console.WriteLine($"{index}. {item.name.english} - {item.CurrentHealth} HP");
                 index++;
             }
 

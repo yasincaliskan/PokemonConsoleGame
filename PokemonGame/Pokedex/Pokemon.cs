@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PokemonGame.Pokedex;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,18 +7,16 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Pokemons
 {
- 
+
     public class Pokemon
     {
-        public string Name { get; set; }
-        public double Attack { get; set; }
-        public double Defense { get; set; }
-        public double Speed { get; set; }
-        public double HitPoint { get; set; }
+        public int id { get; set; }
+        public Language name { get; set; }
+        public List<string> types { get; set; }
+        public Base baseProps { get; set; }
         public double MaxHealth { get; set; }
         public double CurrentHealth { get; set; }
         public bool Status { get; set; }
-        public PokemonType Type { get; set; }
         public int Level { get; set; }
         public double EXP { get; set; }
 
@@ -25,54 +24,63 @@ namespace PokemonGame.Pokemons
         {
 
         }
-        public Pokemon(string name)
+        public Pokemon(double health = 50, int level = 1)
         {
-            this.Name = name;
-        }
-
-        public Pokemon(string name, double attack, double defense, double speed, double hitpoint, PokemonType type, double health = 50, int level = 1)
-        {
-            this.Name = name;
-            this.Attack = attack;
-            this.Defense = defense;
-            this.Speed = speed;
-            this.HitPoint = hitpoint;
+            //this.types = new List<PokemonType>();
+            this.baseProps = new Base();
             this.EXP = 0;
             this.CurrentHealth = health;
             this.MaxHealth = health;
             this.Level = level;
-            this.Type = type;
             this.Status = true;
         }
 
-        public double CalculateDamage() // interface method
+        public double CalculateDamage(Pokemon opponentPokemon) // interface method
         {
             Random rnd = new Random();
             int Power = 50;
-            double modifier;
-            //if (this.Type.AdvantageAttack != null)
-            //{
-            //    Modifier = 5 * rnd.Next(1); //TODO: Effectivenes * Random (0.85-1)
-            //}
-            //else if (this.Type.DisadvantageAttack != null)
-            //{
-            //    Modifier = -5 * rnd.Next(1);
-            //}
-            //else
-            //{
-            //    Modifier = rnd.Next(1);
-            //}
-            modifier = rnd.Next(1);
-            double Damage = (((((2 * Level) / 5) + 2) * Power * (Attack / Defense) / 50) + 2) * modifier;
+            double modifier = TypeEffectivenes(opponentPokemon) * rnd.Next(85, 100) / 100;
+
+            double Damage = (((((2 * Level) / 5) + 2) * Power * (this.baseProps.Attack / this.baseProps.Defense) / 50) + 2) * modifier;
             return Damage;
+        }
+
+        public double TypeEffectivenes(Pokemon opponentPokemon)
+        {
+            double effectValue = 0.0;
+
+            foreach (var current in this.types)
+            {
+                foreach (var opponent in opponentPokemon.types)
+                {
+                    //if (current.immunes.Contains(opponent.name))
+                    //{
+                    //    effectValue = 5;
+                    //}
+                    //else if (current.strengths.Contains(opponent.name))
+                    //{
+                    //    effectValue = 3;
+                    //}
+                    //else if (current.weaknesses.Contains(opponent.name))
+                    //{
+                    //    effectValue = -3;
+                    //}
+                    //else
+                    //{
+                    //    effectValue = 1;
+                    //}
+
+                }
+            }
+            return effectValue;
         }
 
         public void Evolve()
         {
             this.Level += 1;
             this.MaxHealth += 30 + this.Level;
-            this.Attack += this.Level * 2;
-            this.Defense += this.Level * 1.5;
+            this.baseProps.Attack += this.Level * 2;
+            this.baseProps.Defense += this.Level * 2;
         }
     }
 }

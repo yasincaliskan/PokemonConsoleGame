@@ -52,7 +52,7 @@ namespace PokemonGame.Places
                 Console.WriteLine($"{player.Nickname}");
                 foreach (var pokemon in player.Pokemons)
                 {
-                    Console.WriteLine($"-> {pokemon.Name} - {pokemon.Level}");
+                    Console.WriteLine($"-> {pokemon.name.english} - {pokemon.Level}");
                 }
             }
             Console.WriteLine($"Rosette: {this.Rosette}");

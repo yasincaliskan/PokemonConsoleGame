@@ -24,7 +24,7 @@ namespace PokemonGame.Trainers
             Console.WriteLine("Use potion to: ");
             foreach (var item in this.Pokemons)
             {
-                Console.WriteLine($"{index}. {item.Name}");
+                Console.WriteLine($"{index}. {item.name.english}");
             }
             choice = Convert.ToInt32(Console.ReadLine());
             if (this.Pokemons[choice - 1].CurrentHealth + 30 < this.Pokemons[choice - 1].MaxHealth)
@@ -42,13 +42,13 @@ namespace PokemonGame.Trainers
         {
             if (wildPokemon.CurrentHealth < 20 || wildPokemon.CurrentHealth > 0)
             {
-                Console.WriteLine($"You catched {wildPokemon.Name}!");
+                Console.WriteLine($"You catched {wildPokemon.name.english}!");
                 this.Pokemons.Add(wildPokemon);
                 this.Pokeballs--;
             }
             else
             {
-                Console.WriteLine($"You can not catch {wildPokemon.Name}! ");
+                Console.WriteLine($"You can not catch {wildPokemon.name.english}! ");
             }
         }
 
@@ -57,7 +57,7 @@ namespace PokemonGame.Trainers
             string trainerInfo = $"Name: {this.Nickname}\n";
             foreach (var item in this.Pokemons)
             {
-                trainerInfo += $"-{item.Name}";
+                trainerInfo += $"-{item.name.english}";
             }
             return trainerInfo;
         }

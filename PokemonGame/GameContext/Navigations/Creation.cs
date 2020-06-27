@@ -1,4 +1,5 @@
-﻿using PokemonGame.Places;
+﻿using PokemonGame.GameContext.Navigations;
+using PokemonGame.Places;
 using PokemonGame.Pokemons;
 using PokemonGame.Trainers;
 using System;
@@ -11,38 +12,21 @@ namespace PokemonGame.GameContext
 {
     public static class Creation
     {
+        public static List<Pokemon> StartingObjects()
+        {
+            List<PokemonType> allPokemonTypes = DataOperation.LoadPokemonType();
+            List<Pokemon> allPokemons = DataOperation.LoadPokemons();
+
+            return allPokemons;
+        }
+
         public static List<Pokemon> StartingPokemons()
         {
-            List<Pokemon> InitialPokemons = new List<Pokemon>();
-            Pokemon initialBulbasaur = new Pokemon("Bulbasaur");
-            Pokemon initialSquirtle = new Pokemon("Squirtle");
-            Pokemon initialCharmander = new Pokemon("Charmander");
-            InitialPokemons.Add(initialBulbasaur);
-            InitialPokemons.Add(initialSquirtle);
-            InitialPokemons.Add(initialCharmander);
-
+            List<Pokemon> InitialPokemons = DataOperation.LoadInitialPokemons();
+            
             return InitialPokemons;
         }
 
-        public static List<PokemonType> CreateTypes()
-        {
-            //read type list
-            List<PokemonType> PokemonTypes = new List<PokemonType>();
-
-            return PokemonTypes;
-        }
-
-        public static List<Pokemon> CreateWildPokemons()
-        {
-            List<Pokemon> wildPokemons = new List<Pokemon>();
-            Pokemon Pidgey = new Pokemon("Pidgey");
-            Pokemon Rattata = new Pokemon("Rattata");
-
-            wildPokemons.Add(Pidgey);
-            wildPokemons.Add(Rattata);
-
-            return wildPokemons;
-        }
 
         public static List<Arena> CreateArenas()
         {

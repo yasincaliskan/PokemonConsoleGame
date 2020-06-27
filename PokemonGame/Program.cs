@@ -12,6 +12,7 @@ namespace PokemonGame
     {
         static void Main(string[] args)
         {
+            Creation.StartingObjects();
             Menu.StartGame();
 
             Console.ReadLine();
