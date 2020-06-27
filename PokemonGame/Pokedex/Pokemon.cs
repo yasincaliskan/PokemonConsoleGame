@@ -13,18 +13,20 @@ namespace PokemonGame.Pokemons
         public int id { get; set; }
         public Language name { get; set; }
         public List<string> type { get; set; }
-        public BaseProp baseProps { get; set; }
+        public string HP { get; set; }
+        public int Attack { get; set; }
+        public int Defense { get; set; }
+        public int SpAttack { get; set; }
+        public int SpDefense { get; set; }
+        public int Speed { get; set; }
         public double MaxHealth { get; set; }
         public double CurrentHealth { get; set; }
         public bool Status { get; set; }
         public int Level { get; set; }
         public double EXP { get; set; }
 
-        
         public Pokemon()
-        {
-            //this.types = new List<PokemonType>();
-            
+        {   
             this.EXP = 0;
             this.CurrentHealth = 50;
             this.MaxHealth = 50;
@@ -38,7 +40,7 @@ namespace PokemonGame.Pokemons
             int Power = 50;
             double modifier = TypeEffectivenes(opponentPokemon) * rnd.Next(85, 100) / 100;
 
-            double Damage = (((((2 * Level) / 5) + 2) * Power * (this.baseProps.Attack / this.baseProps.Defense) / 50) + 2) * modifier;
+            double Damage = (((((2 * Level) / 5) + 2) * Power * (this.Attack / this.Defense) / 50) + 2);// * modifier;
             return Damage;
         }
 
@@ -72,12 +74,17 @@ namespace PokemonGame.Pokemons
             return effectValue;
         }
 
+        public void ShowProps()
+        {
+            Console.WriteLine($"{this.name.english} - max hp {this.MaxHealth} - sp {this.Speed} - {this.Attack}");
+        }
+
         public void Evolve()
         {
             this.Level += 1;
             this.MaxHealth += 30 + this.Level;
-            this.baseProps.Attack += this.Level * 2;
-            this.baseProps.Defense += this.Level * 2;
+            this.Attack += this.Level * 2;
+            this.Defense += this.Level * 2;
         }
     }
 }

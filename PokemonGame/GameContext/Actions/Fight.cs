@@ -17,12 +17,15 @@ namespace PokemonGame.GameContext.Actions
         {
             Random rnd = new Random();
             Pokemon selectedPokemon = Menu.SelectPokemon(trainer);
-            if (selectedPokemon.baseProps.Speed > wildPokemon.baseProps.Speed)
-            {
+            //if (selectedPokemon.baseProps.Speed > wildPokemon.baseProps.Speed)
+            //{
+
+            selectedPokemon.ShowProps();
+
                 while (selectedPokemon.CurrentHealth > 0 || wildPokemon.CurrentHealth > 0)
                 {
                     Console.WriteLine("1. Attack\n2. Go to Bag");
-                    Console.WriteLine("->");
+                    Console.Write("->");
                     choice = Convert.ToInt32(Console.ReadLine());
                     switch (choice)
                     {
@@ -53,7 +56,7 @@ namespace PokemonGame.GameContext.Actions
                         selectedPokemon.EXP += rnd.Next(10, 20);
                     }
                 }
-            }
+            //}
         }
 
         public static void Battle(Trainer trainer, Player opponent)
