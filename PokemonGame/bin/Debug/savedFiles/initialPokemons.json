@@ -7,18 +7,17 @@
       "chinese": "杰尼龟",
       "french": "Carapuce"
     },
-    "type": 
-      [
-        "Water"
-      ],
-      
-      "HP": 44,
-      "Attack": 48,
-      "Defense": 65,
-      "Sp. Attack": 50,
-      "Sp. Defense": 64,
-      "Speed": 43
-    
+    "type": [
+      "Water"
+    ],
+
+    "HP": 44,
+    "Attack": 48,
+    "Defense": 65,
+    "Sp. Attack": 50,
+    "Sp. Defense": 64,
+    "Speed": 43
+
   },
   {
     "id": 1,
@@ -28,18 +27,17 @@
       "chinese": "妙蛙种子",
       "french": "Bulbizarre"
     },
-    "type": 
-      [
-        "Grass",
-        "Poison"
-      ],
-      "HP": 45,
-      "Attack": 49,
-      "Defense": 49,
-      "Sp. Attack": 65,
-      "Sp. Defense": 65,
-      "Speed": 45
-    
+    "type": [
+      "Grass",
+      "Poison"
+    ],
+    "HP": 45,
+    "Attack": 49,
+    "Defense": 49,
+    "Sp. Attack": 65,
+    "Sp. Defense": 65,
+    "Speed": 45
+
   },
   {
     "id": 4,
@@ -49,18 +47,17 @@
       "chinese": "小火龙",
       "french": "Salamèche"
     },
-    "type": 
-      [
-        "Fire"
-      ],
- 
-      "HP": 39,
-      "Attack": 52,
-      "Defense": 43,
-      "Sp. Attack": 60,
-      "Sp. Defense": 50,
-      "Speed": 65
-    
+    "type": [
+      "Fire"
+    ],
+
+    "HP": 39,
+    "Attack": 52,
+    "Defense": 43,
+    "Sp. Attack": 60,
+    "Sp. Defense": 50,
+    "Speed": 65
+
   },
   {
     "id": 25,
@@ -70,16 +67,15 @@
       "chinese": "皮卡丘",
       "french": "Pikachu"
     },
-    "type": 
-      [
-        "Electric"
-      ],
-      "HP": 35,
-      "Attack": 55,
-      "Defense": 40,
-      "Sp. Attack": 50,
-      "Sp. Defense": 50,
-      "Speed": 90
-    
+    "type": [
+      "Electric"
+    ],
+    "HP": 35,
+    "Attack": 55,
+    "Defense": 40,
+    "Sp. Attack": 50,
+    "Sp. Defense": 50,
+    "Speed": 90
+
   }
 ]

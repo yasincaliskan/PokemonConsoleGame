@@ -17,12 +17,14 @@ namespace PokemonGame.Trainers
         public Player()
         {
             this.Pokemons = new List<Pokemon>();
+            this.Rosettes = new List<Rosette>();
         }
         public Player(string nickname)
         {
             this.Nickname = nickname;
             this.Pokemons = new List<Pokemon>();
-            
+            this.Rosettes = new List<Rosette>();
+
         }
         public void ShowRosettes()
         {

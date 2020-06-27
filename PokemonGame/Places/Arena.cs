@@ -17,6 +17,7 @@ namespace PokemonGame.Places
         public Arena(string name)
         {
             this.Name = name;
+            this.Opponents = new List<Player>();
         }
 
         int choice;
@@ -24,7 +25,7 @@ namespace PokemonGame.Places
         {
 
             Console.WriteLine($"Welcome to {this.Name} Arena!");
-            Console.WriteLine("1. Join Tournament\n2. Info\n0. Main Menu\n->");
+            Console.Write("1. Join Tournament\n2. Info\n0. Main Menu\n->");
             choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {
@@ -32,7 +33,7 @@ namespace PokemonGame.Places
                     JoinTournament(trainer, this.Opponents);
                     break;
                 case 2:
-                    GiveInfo();
+                    GiveInfo(trainer);
                     break;
                 case 0:
                     Menu.MainActions(trainer);
@@ -45,7 +46,7 @@ namespace PokemonGame.Places
             //battle
         }
 
-        public void GiveInfo()
+        public void GiveInfo(Trainer trainer)
         {
             foreach (var player in this.Opponents)
             {
@@ -55,7 +56,10 @@ namespace PokemonGame.Places
                     Console.WriteLine($"-> {pokemon.name.english} - {pokemon.Level}");
                 }
             }
-            Console.WriteLine($"Rosette: {this.Rosette}");
+
+            Console.WriteLine($"Rosette: {this.Rosette.Name}");
+
+            GoToArena(trainer);
         }
     }
 }

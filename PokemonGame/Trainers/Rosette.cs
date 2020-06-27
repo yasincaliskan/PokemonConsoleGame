@@ -11,5 +11,10 @@ namespace PokemonGame.Trainers
     {
         public string Name { get; set; }
         public Arena Arena { get; set; }
+
+        public Rosette(string name)
+        {
+            this.Name = name;
+        }
     }
 }

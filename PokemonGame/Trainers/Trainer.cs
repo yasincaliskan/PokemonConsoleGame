@@ -1,4 +1,5 @@
-﻿using PokemonGame.Pokemons;
+﻿using PokemonGame.GameContext.Navigations;
+using PokemonGame.Pokemons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,7 @@ namespace PokemonGame.Trainers
                 Console.WriteLine($"You catched {wildPokemon.name.english}!");
                 this.Pokemons.Add(wildPokemon);
                 this.Pokeballs--;
+                Menu.MainActions(this);
             }
             else
             {

@@ -17,46 +17,52 @@ namespace PokemonGame.GameContext.Actions
         {
             Random rnd = new Random();
             Pokemon selectedPokemon = Menu.SelectPokemon(trainer);
-            //if (selectedPokemon.baseProps.Speed > wildPokemon.baseProps.Speed)
-            //{
 
-            selectedPokemon.ShowProps();
 
-                while (selectedPokemon.CurrentHealth > 0 || wildPokemon.CurrentHealth > 0)
+            while (selectedPokemon.CurrentHealth > 0 || wildPokemon.CurrentHealth > 0)
+            {
+                Console.WriteLine("1. Attack\n2. Go to Bag");
+                Console.Write("->");
+                choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
                 {
-                    Console.WriteLine("1. Attack\n2. Go to Bag");
-                    Console.Write("->");
-                    choice = Convert.ToInt32(Console.ReadLine());
-                    switch (choice)
-                    {
-                        case 1:
-                            Attack(selectedPokemon, wildPokemon);
-                            break;
-                        case 2:
-                            UseItem.GoToBag(wildPokemon, trainer);
-                            break;
-                        default:
-                            Console.WriteLine("Opss! You missed your attack chance.");
-                            break;
-                    }
-
-                    double wildPokemonDamage = wildPokemon.CalculateDamage(wildPokemon);
-                    selectedPokemon.CurrentHealth -= wildPokemonDamage;
-                    Console.WriteLine($"{wildPokemon.name.english} damaged {wildPokemonDamage}! {selectedPokemon.name.english} {selectedPokemon.CurrentHealth} lives health.");
-
-                    if (selectedPokemon.CurrentHealth <= 0)
-                    {
-                        selectedPokemon.Status = false;
-                        Console.WriteLine($"{selectedPokemon.name.english} passed out!\nYou should go to PokeCenter!");
-                    }
-                    else if (wildPokemon.CurrentHealth <= 0)
-                    {
-                        wildPokemon.Status = false;
-                        Console.WriteLine($"{wildPokemon.name.english} passed out! You can not catch it.");
-                        selectedPokemon.EXP += rnd.Next(10, 20);
-                    }
+                    case 1:
+                        Attack(selectedPokemon, wildPokemon);
+                        break;
+                    case 2:
+                        UseItem.GoToBag(wildPokemon, trainer);
+                        break;
+                    default:
+                        Console.WriteLine("Opss! You missed your attack chance.");
+                        break;
                 }
-            //}
+
+                double wildPokemonDamage = wildPokemon.CalculateDamage(wildPokemon);
+                selectedPokemon.CurrentHealth -= wildPokemonDamage;
+                Console.WriteLine($"{wildPokemon.name.english} damaged {wildPokemonDamage}! {selectedPokemon.name.english} {selectedPokemon.CurrentHealth} lives health.");
+
+                if (selectedPokemon.CurrentHealth <= 0)
+                {
+                    selectedPokemon.Status = false;
+                    Console.WriteLine($"{selectedPokemon.name.english} passed out!\nYou should go to PokeCenter!");
+
+                    Menu.MainActions(trainer);
+                    break;
+                }
+                else if (wildPokemon.CurrentHealth <= 0)
+                {
+                    wildPokemon.Status = false;
+                    Console.WriteLine($"{wildPokemon.name.english} passed out! You win!");
+                    selectedPokemon.EXP += rnd.Next(10, 20);
+
+
+                    Menu.MainActions(trainer);
+                    break;
+                }
+            }
+
+            Menu.MainActions(trainer);
+
         }
 
         public static void Battle(Trainer trainer, Player opponent)

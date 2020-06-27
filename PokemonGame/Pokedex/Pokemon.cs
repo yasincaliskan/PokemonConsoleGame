@@ -1,4 +1,5 @@
-﻿using PokemonGame.Pokedex;
+﻿using PokemonGame.GameContext.Navigations;
+using PokemonGame.Pokedex;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace PokemonGame.Pokemons
         public int id { get; set; }
         public Language name { get; set; }
         public List<string> type { get; set; }
-        public string HP { get; set; }
+        public int HP { get; set; }
         public int Attack { get; set; }
         public int Defense { get; set; }
         public int SpAttack { get; set; }
@@ -26,7 +27,7 @@ namespace PokemonGame.Pokemons
         public double EXP { get; set; }
 
         public Pokemon()
-        {   
+        {
             this.EXP = 0;
             this.CurrentHealth = 50;
             this.MaxHealth = 50;
@@ -34,13 +35,13 @@ namespace PokemonGame.Pokemons
             this.Status = true;
         }
 
-        public double CalculateDamage(Pokemon opponentPokemon) // interface method
+        public double CalculateDamage(Pokemon opponentPokemon)
         {
             Random rnd = new Random();
             int Power = 50;
             double modifier = TypeEffectivenes(opponentPokemon) * rnd.Next(85, 100) / 100;
 
-            double Damage = (((((2 * Level) / 5) + 2) * Power * (this.Attack / this.Defense) / 50) + 2);// * modifier;
+            double Damage = (((((2 * Level) / 5) + 2) * Power * (this.Attack / this.Defense) / 50) + 2) * modifier;
             return Damage;
         }
 
@@ -52,23 +53,31 @@ namespace PokemonGame.Pokemons
             {
                 foreach (var opponent in opponentPokemon.type)
                 {
-                    //if (current.immunes.Contains(opponent.name))
-                    //{
-                    //    effectValue = 5;
-                    //}
-                    //else if (current.strengths.Contains(opponent.name))
-                    //{
-                    //    effectValue = 3;
-                    //}
-                    //else if (current.weaknesses.Contains(opponent.name))
-                    //{
-                    //    effectValue = -3;
-                    //}
-                    //else
-                    //{
-                    //    effectValue = 1;
-                    //}
-                   
+                    List<PokemonType> allTypes = DataOperation.LoadPokemonType();
+
+                    foreach (var currentType in allTypes)
+                    {
+                        if (current == currentType.name)
+                        {
+                            if (currentType.immunes.Contains(opponent))
+                            {
+                                effectValue = 5;
+                            }
+                            else if (currentType.strengths.Contains(opponent))
+                            {
+                                effectValue = 3;
+                            }
+                            else if (currentType.weaknesses.Contains(opponent))
+                            {
+                                effectValue = -3;
+                            }
+                            else
+                            {
+                                effectValue = 1;
+                            }
+                        }
+
+                    }
                 }
             }
             return effectValue;
