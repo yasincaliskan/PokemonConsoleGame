@@ -46,14 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameContext\Actions\Fight.cs" />
-    <Compile Include="GameContext\Actions\JoinTournament.cs" />
-    <Compile Include="GameContext\Actions\UseItem.cs" />
-    <Compile Include="GameContext\Navigations\Creation.cs" />
-    <Compile Include="GameContext\Navigations\DataOperation.cs" />
-    <Compile Include="GameContext\Navigations\Menu.cs" />
+    <Compile Include="Context\Actions\Fight.cs" />
+    <Compile Include="Context\Actions\JoinTournament.cs" />
+    <Compile Include="Context\Actions\UseItem.cs" />
+    <Compile Include="Context\Creation\Creation.cs" />
+    <Compile Include="Context\Creation\PokemonFactory.cs" />
+    <Compile Include="Context\Navigations\DataOperation.cs" />
+    <Compile Include="Context\Navigations\Menu.cs" />
     <Compile Include="Places\Arena.cs" />
     <Compile Include="Places\Pokecenter.cs" />
+    <Compile Include="Pokedex\IPokemon.cs" />
     <Compile Include="Pokedex\Language.cs" />
     <Compile Include="Pokedex\Pokemon.cs" />
     <Compile Include="Pokedex\PokemonType.cs" />

@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Pokemons
 {
-
-    public class Pokemon
+    public class Pokemon:IPokemon
     {
         public int id { get; set; }
         public Language name { get; set; }
@@ -41,7 +40,7 @@ namespace PokemonGame.Pokemons
             int Power = 50;
             double modifier = TypeEffectivenes(opponentPokemon) * rnd.Next(85, 100) / 100;
 
-            double Damage = (((((2 * Level) / 5) + 2) * Power * (this.Attack / this.Defense) / 50) + 2) * modifier;
+            double Damage = Math.Abs((((((2 * Level) / 5) + 2) * Power * (this.Attack / this.Defense) / 50) + 2) * modifier);
             return Damage;
         }
 

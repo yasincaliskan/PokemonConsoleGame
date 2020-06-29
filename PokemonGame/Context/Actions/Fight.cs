@@ -1,4 +1,5 @@
-﻿using PokemonGame.GameContext.Navigations;
+﻿using PokemonGame.Context.Creation;
+using PokemonGame.GameContext.Navigations;
 using PokemonGame.Pokemons;
 using PokemonGame.Trainers;
 using System;
@@ -117,11 +118,7 @@ namespace PokemonGame.GameContext.Actions
 
         public static void HuntWildPokemon(Trainer trainer)
         {
-            Random rnd = new Random();
-            List<Pokemon> wildPokemons = Creation.StartingObjects();
-            int randomNumber = rnd.Next(0, wildPokemons.Count);
-            Pokemon wildPokemon = wildPokemons[randomNumber];
-
+            Pokemon wildPokemon = PokemonFactory.CreateWildPokemon();
             Console.WriteLine($"Hey! It's a {wildPokemon.name.english}.");
             Battle(wildPokemon, trainer);
         }
