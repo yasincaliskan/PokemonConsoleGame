@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PokemonGame.Trainers
 {
-    public class Player
+    public class Player:IPlayer
     {
         public string Nickname { get; set; }
         public List<Pokemon> Pokemons { get; set; }

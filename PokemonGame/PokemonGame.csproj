@@ -59,6 +59,7 @@
     <Compile Include="Pokedex\PokemonType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trainers\IPlayer.cs" />
     <Compile Include="Trainers\Opponent.cs" />
     <Compile Include="Trainers\Player.cs" />
     <Compile Include="Trainers\Rosette.cs" />
