@@ -28,11 +28,18 @@ namespace PokemonGame.Trainers
         }
         public void ShowRosettes()
         {
-            int index = 1;
             foreach (var item in this.Rosettes)
             {
-                Console.WriteLine($"{index}. {item.Name} - [{item.Arena}]");
-                index++;
+                Console.WriteLine($"-> {item.Name} - [{item.Arena}]");
+                
+            }
+        }
+
+        public void ShowPokemons()
+        {
+            foreach (var item in this.Pokemons)
+            {
+                Console.WriteLine($"-> {item.name.english} - HP: {item.HP}");
             }
         }
     }

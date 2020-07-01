@@ -90,11 +90,12 @@ namespace PokemonGame.GameContext.Navigations
             foreach (var item in trainer.Pokemons)
             {
                 Console.WriteLine($"{index}. {item.name.english}");
+                index++;
             }
             Console.Write("->");
             choice = Convert.ToInt32(Console.ReadLine());
 
-            Pokemon selectedPokemon = trainer.Pokemons[index - 1];
+            Pokemon selectedPokemon = trainer.Pokemons[choice-1];
             return selectedPokemon;
         }
 

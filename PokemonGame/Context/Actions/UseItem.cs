@@ -14,7 +14,7 @@ namespace PokemonGame.GameContext.Actions
         public static void GoToBag(Pokemon wildPokemon, Trainer trainer)
         {
             Console.WriteLine("Select item:");
-            Console.WriteLine($"1. Pokeball - {trainer.Pokeballs}\n 2. Potion - {trainer.Potions}");
+            Console.WriteLine($"1. Pokeball - {trainer.Pokeballs}\n2. Potion - {trainer.Potions}");
             choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {

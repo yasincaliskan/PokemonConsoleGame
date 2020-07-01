@@ -1,4 +1,5 @@
-﻿using PokemonGame.GameContext.Navigations;
+﻿using PokemonGame.Context.Creation;
+using PokemonGame.GameContext.Navigations;
 using PokemonGame.Pokemons;
 using System;
 using System.Collections.Generic;
@@ -20,28 +21,36 @@ namespace PokemonGame.Trainers
         }
         public void UsePotion()
         {
-            int index = 1;
-            int choice;
-            Console.WriteLine("Use potion to: ");
-            foreach (var item in this.Pokemons)
+            if (this.Potions > 0)
             {
-                Console.WriteLine($"{index}. {item.name.english}");
-            }
-            choice = Convert.ToInt32(Console.ReadLine());
-            if (this.Pokemons[choice - 1].CurrentHealth + 30 < this.Pokemons[choice - 1].MaxHealth)
+
+                int index = 1;
+                int choice;
+                Console.WriteLine("Use potion to: ");
+                foreach (var item in this.Pokemons)
+                {
+                    Console.WriteLine($"{index}. {item.name.english}");
+                }
+                choice = Convert.ToInt32(Console.ReadLine());
+                if (this.Pokemons[choice - 1].HP + 25 < PokemonFactory.CreateSpecificPokemon(this.Pokemons[choice -1].name.english).HP)
             {
-                this.Pokemons[choice - 1].CurrentHealth += 30;
+                this.Pokemons[choice - 1].HP += 25;
             }
             else
             {
-                this.Pokemons[choice - 1].CurrentHealth = this.Pokemons[choice - 1].MaxHealth;
+                this.Pokemons[choice - 1].HP = PokemonFactory.CreateSpecificPokemon(this.Pokemons[choice - 1].name.english).HP;
             }
             this.Potions--;
+            }
+            else
+            {
+                Console.WriteLine("You have not any potion!");
+            }
         }
 
         public void UsePokeball(Pokemon wildPokemon)
         {
-            if (wildPokemon.CurrentHealth < 20 || wildPokemon.CurrentHealth > 0)
+            if (wildPokemon.HP < 20 || wildPokemon.HP > 0)
             {
                 Console.WriteLine($"You catched {wildPokemon.name.english}!");
                 this.Pokemons.Add(wildPokemon);

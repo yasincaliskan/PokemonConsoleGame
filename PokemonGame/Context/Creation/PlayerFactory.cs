@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PokemonGame.Trainers
+namespace PokemonGame.Context.Creation
 {
-    interface IPlayer
+    class PlayerFactory
     {
-        void ShowRosettes();
-        void ShowPokemons();
     }
 }

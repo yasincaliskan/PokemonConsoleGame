@@ -14,7 +14,7 @@ namespace PokemonGame.GameContext
     {
         public static List<Pokemon> StartingObjects()
         {
-            List<PokemonType> allPokemonTypes = DataOperation.LoadPokemonType();
+            //List<PokemonType> allPokemonTypes = DataOperation.LoadPokemonType();
             List<Pokemon> allPokemons = DataOperation.LoadPokemons();
 
             return allPokemons;

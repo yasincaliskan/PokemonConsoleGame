@@ -20,7 +20,7 @@ namespace PokemonGame.GameContext.Actions
             Pokemon selectedPokemon = Menu.SelectPokemon(trainer);
 
 
-            while (selectedPokemon.CurrentHealth > 0 || wildPokemon.CurrentHealth > 0)
+            while (selectedPokemon.HP > 0 || wildPokemon.HP > 0)
             {
                 Console.WriteLine("1. Attack\n2. Go to Bag");
                 Console.Write("->");
@@ -39,10 +39,10 @@ namespace PokemonGame.GameContext.Actions
                 }
 
                 double wildPokemonDamage = wildPokemon.CalculateDamage(wildPokemon);
-                selectedPokemon.CurrentHealth -= wildPokemonDamage;
-                Console.WriteLine($"{wildPokemon.name.english} damaged {wildPokemonDamage}! {selectedPokemon.name.english} {selectedPokemon.CurrentHealth} lives health.");
+                selectedPokemon.HP -= Convert.ToInt32(wildPokemonDamage);
+                Console.WriteLine($"{wildPokemon.name.english} damaged {wildPokemonDamage}! {selectedPokemon.name.english} {selectedPokemon.HP} lives health.");
 
-                if (selectedPokemon.CurrentHealth <= 0)
+                if (selectedPokemon.HP <= 0)
                 {
                     selectedPokemon.Status = false;
                     Console.WriteLine($"{selectedPokemon.name.english} passed out!\nYou should go to PokeCenter!");
@@ -50,7 +50,7 @@ namespace PokemonGame.GameContext.Actions
                     Menu.MainActions(trainer);
                     break;
                 }
-                else if (wildPokemon.CurrentHealth <= 0)
+                else if (wildPokemon.HP <= 0)
                 {
                     wildPokemon.Status = false;
                     Console.WriteLine($"{wildPokemon.name.english} passed out! You win!");
@@ -71,7 +71,7 @@ namespace PokemonGame.GameContext.Actions
             Random rnd = new Random();
             Pokemon trainerPokemon = Menu.SelectPokemon(trainer);
             Pokemon opponentPokemon = Menu.SelectPokemon(opponent);
-            while (trainerPokemon.CurrentHealth > 0 || opponentPokemon.CurrentHealth > 0)
+            while (trainerPokemon.HP > 0 || opponentPokemon.HP > 0)
             {
                 Console.WriteLine("1. Attack\n2. Change Pokemon\n 0. Leave the match");
                 choice = Convert.ToInt32(Console.ReadLine());
@@ -88,30 +88,30 @@ namespace PokemonGame.GameContext.Actions
                         break;
                 }
             }
-            if (trainerPokemon.CurrentHealth <= 0)
+            if (trainerPokemon.HP <= 0)
             {
                 trainerPokemon.Status = false;
                 Console.WriteLine($"{trainerPokemon.name.english} passed out!\nYou should go to PokeCenter!");
             }
-            {
-                opponentPokemon.Status = false;
-                Console.WriteLine($"{opponentPokemon.name.english} passed out! You can not catch it.");
-                opponentPokemon.EXP += rnd.Next(10, 20);
-            }
+
+            opponentPokemon.Status = false;
+            Console.WriteLine($"{opponentPokemon.name.english} passed out! You can not catch it.");
+            opponentPokemon.EXP += rnd.Next(10, 20);
+
         }
 
         public static void Attack(Pokemon trainerPokemon, Pokemon opponentPokemon)
         {
             double trainerDamage = trainerPokemon.CalculateDamage(opponentPokemon);
-            opponentPokemon.CurrentHealth -= trainerDamage;
-            Console.WriteLine($"{trainerPokemon.name.english} damaged {trainerDamage}! {opponentPokemon.name.english} {opponentPokemon.CurrentHealth} lives health.");
+            opponentPokemon.HP -= Convert.ToInt32(trainerDamage);
+            Console.WriteLine($"{trainerPokemon.name.english} damaged {trainerDamage}! {opponentPokemon.name.english} {opponentPokemon.HP} lives health.");
         }
 
         public static void OpponentAttack(Pokemon trainerPokemon, Pokemon opponentPokemon)
         {
             double opponentDamage = opponentPokemon.CalculateDamage(opponentPokemon);
-            trainerPokemon.CurrentHealth -= opponentDamage;
-            Console.WriteLine($"{opponentPokemon.name.english} damaged {opponentDamage}! {trainerPokemon.name.english} {trainerPokemon.CurrentHealth} lives health.");
+            trainerPokemon.HP -= Convert.ToInt32(opponentDamage);
+            Console.WriteLine($"{opponentPokemon.name.english} damaged {opponentDamage}! {trainerPokemon.name.english} {trainerPokemon.HP} lives health.");
 
 
         }

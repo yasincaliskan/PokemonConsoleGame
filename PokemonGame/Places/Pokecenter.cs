@@ -1,4 +1,5 @@
-﻿using PokemonGame.GameContext.Navigations;
+﻿using PokemonGame.Context.Creation;
+using PokemonGame.GameContext.Navigations;
 using PokemonGame.Pokemons;
 using PokemonGame.Trainers;
 using System;
@@ -33,9 +34,10 @@ namespace PokemonGame.Places
             Console.WriteLine("Your pokemons are healed!");
             foreach (var item in trainerPokemons)
             {
+               
                 int index = 1;
-                item.CurrentHealth = item.MaxHealth;
-                Console.WriteLine($"{index}. {item.name.english} - {item.CurrentHealth} HP");
+                item.HP = PokemonFactory.CreateSpecificPokemon(item.name.english).HP;
+                Console.WriteLine($"{index}. {item.name.english} - {item.HP} HP");
                 index++;
             }
 

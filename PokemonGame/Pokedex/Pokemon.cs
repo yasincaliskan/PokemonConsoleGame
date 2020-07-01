@@ -19,8 +19,6 @@ namespace PokemonGame.Pokemons
         public int SpAttack { get; set; }
         public int SpDefense { get; set; }
         public int Speed { get; set; }
-        public double MaxHealth { get; set; }
-        public double CurrentHealth { get; set; }
         public bool Status { get; set; }
         public int Level { get; set; }
         public double EXP { get; set; }
@@ -28,8 +26,6 @@ namespace PokemonGame.Pokemons
         public Pokemon()
         {
             this.EXP = 0;
-            this.CurrentHealth = 50;
-            this.MaxHealth = 50;
             this.Level = 1;
             this.Status = true;
         }
@@ -82,15 +78,10 @@ namespace PokemonGame.Pokemons
             return effectValue;
         }
 
-        public void ShowProps()
-        {
-            Console.WriteLine($"{this.name.english} - max hp {this.MaxHealth} - sp {this.Speed} - {this.Attack}");
-        }
-
         public void Evolve()
         {
             this.Level += 1;
-            this.MaxHealth += 30 + this.Level;
+            this.HP += 30 + this.Level;
             this.Attack += this.Level * 2;
             this.Defense += this.Level * 2;
         }
