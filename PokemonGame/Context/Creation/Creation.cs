@@ -27,53 +27,14 @@ namespace PokemonGame.GameContext
             return InitialPokemons;
         }
 
-
-        public static List<Arena> CreateArenas()
+        public static List<string> ArenaNames()
         {
-            List<Arena> arenaList = new List<Arena>();
-            Arena townArena = new Arena("PaletteTown");
-            Arena champArena = new Arena("ChampionArena");
-
-            List<Player> opponentPlayer = CreateOpponents();
-            townArena.Opponents.Add(opponentPlayer[0]);
-            champArena.Opponents.Add(opponentPlayer[1]);
-            champArena.Opponents.Add(opponentPlayer[2]);
-
-            List<Rosette> rosettes = CreateRosettes();
-            townArena.Rosette = rosettes[0];
-            champArena.Rosette = rosettes[1];
-            
-            arenaList.Add(townArena);
-            arenaList.Add(champArena);
-            return arenaList;
+            return new List<string>() {"Palette Town", "Champion GYM"};
         }
 
-        public static List<Player> CreateOpponents()
+        public static List<string> PlayerNames()
         {
-            List<Player> opponentList = new List<Player>();
-            Player ashKetchum = new Opponent("Ash Ketchum");
-            Player misty = new Opponent("Misty");
-            Player brock = new Opponent("Brock");
-
-            opponentList.Add(ashKetchum);
-            opponentList.Add(misty);
-            opponentList.Add(brock);
-
-            return opponentList;
-        }
-
-        public static List<Rosette> CreateRosettes()
-        {
-            List<Rosette> rosettes = new List<Rosette>();
-            Rosette ashRosette = new Rosette("Star");
-            Rosette mistyRosette = new Rosette("Ocean");
-            Rosette brockRosette = new Rosette("Rock");
-
-            rosettes.Add(ashRosette);
-            rosettes.Add(mistyRosette);
-            rosettes.Add(brockRosette);
-
-            return rosettes;
+            return new List<string>() { "Ash Ketchum", "Misty", "Brock" };
         }
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="Context\Actions\JoinTournament.cs" />
     <Compile Include="Context\Actions\UseItem.cs" />
     <Compile Include="Context\Creation\Creation.cs" />
+    <Compile Include="Context\Creation\PlayerFactory.cs" />
     <Compile Include="Context\Creation\PokemonFactory.cs" />
     <Compile Include="Context\Navigations\DataOperation.cs" />
     <Compile Include="Context\Navigations\Menu.cs" />
