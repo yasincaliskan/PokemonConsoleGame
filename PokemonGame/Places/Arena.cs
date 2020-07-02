@@ -1,4 +1,5 @@
-﻿using PokemonGame.GameContext.Navigations;
+﻿using PokemonGame.GameContext.Actions;
+using PokemonGame.GameContext.Navigations;
 using PokemonGame.Trainers;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,27 @@ namespace PokemonGame.Places
 
         public void JoinTournament(Trainer trainer, List<Player> opponents)
         {
-            //battle
+            int choice;
+            Console.WriteLine($"Welcome to {this.Name}!\nYou may have a chance for the {this.Rosette.Name}.\nBut firstly you have to fight with:");
+            foreach (var opponent in opponents)
+            {
+            Console.WriteLine($"- {opponent.Nickname}");
+            }
+            Console.WriteLine("\n1. Fight!\n2. Leave the arena");
+            Console.Write("->");
+            choice = Convert.ToInt32(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    Fight.Battle(trainer, opponents);
+                    break;
+                case 2:
+                    Menu.MainActions(trainer);
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void GiveInfo(Trainer trainer)
@@ -57,9 +78,11 @@ namespace PokemonGame.Places
                 }
             }
 
-            Console.WriteLine($"Rosette: {this.Rosette.Name}");
+            Console.WriteLine($"Rosette: {this.Rosette.Name}\n");
 
             GoToArena(trainer);
         }
+
+        
     }
 }

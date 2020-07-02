@@ -66,37 +66,59 @@ namespace PokemonGame.GameContext.Actions
 
         }
 
-        public static void Battle(Trainer trainer, Player opponent)
+        public static void Battle(Trainer trainer, List<Player> opponents)
         {
             Random rnd = new Random();
             Pokemon trainerPokemon = Menu.SelectPokemon(trainer);
-            Pokemon opponentPokemon = Menu.SelectPokemon(opponent);
-            while (trainerPokemon.HP > 0 || opponentPokemon.HP > 0)
+
+            foreach (var opponent in opponents)
             {
-                Console.WriteLine("1. Attack\n2. Change Pokemon\n 0. Leave the match");
-                choice = Convert.ToInt32(Console.ReadLine());
-                switch (choice)
+                foreach (var opponentPokemon in opponent.Pokemons)
                 {
-                    case 1:
-                        Attack(trainerPokemon, opponentPokemon);
-                        break;
-                    case 2:
-                        trainerPokemon = Menu.SelectPokemon(trainer);
-                        break;
-                    case 0:
-                        Menu.MainActions(trainer);
-                        break;
+                    while (trainerPokemon.HP > 0 && opponentPokemon.HP > 0)
+                    {
+                        Console.WriteLine("1. Attack\n2. Change Pokemon\n 0. Leave the match");
+                        Console.Write("->");
+                        choice = Convert.ToInt32(Console.ReadLine());
+                        switch (choice)
+                        {
+                            case 1:
+                                Attack(trainerPokemon, opponentPokemon);
+                                break;
+                            case 2:
+                                trainerPokemon = Menu.SelectPokemon(trainer);
+                                break;
+                            case 0:
+                                Menu.MainActions(trainer);
+                                break;
+                        }
+                    }
+                    if (trainerPokemon.HP <= 0)
+                    {
+                        trainerPokemon.Status = false;
+                        Console.WriteLine($"{trainerPokemon.name.english} passed out!\nYou should go to PokeCenter!\n");
+                        Console.WriteLine("1. Change Pokemon\n2. Leave the match");
+                        Console.Write("->");
+                        choice = Convert.ToInt32(Console.ReadLine());
+                        switch (choice)
+                        {
+                            case 1:
+                                trainerPokemon = Menu.SelectPokemon(trainer);
+                                break;
+                            case 2:
+                                Menu.MainActions(trainer);
+                                break;
+                        }
+                    }
+
+                    opponentPokemon.Status = false;
+                    Console.WriteLine($"{opponentPokemon.name.english} passed out!\n");
+                    trainerPokemon.EXP += rnd.Next(10, 20);
+
+
                 }
             }
-            if (trainerPokemon.HP <= 0)
-            {
-                trainerPokemon.Status = false;
-                Console.WriteLine($"{trainerPokemon.name.english} passed out!\nYou should go to PokeCenter!\n");
-            }
-
-            opponentPokemon.Status = false;
-            Console.WriteLine($"{opponentPokemon.name.english} passed out! You can not catch it.\n");
-            opponentPokemon.EXP += rnd.Next(10, 20);
+            
 
         }
 
