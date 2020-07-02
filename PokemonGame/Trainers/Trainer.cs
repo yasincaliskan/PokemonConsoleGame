@@ -44,22 +44,22 @@ namespace PokemonGame.Trainers
             }
             else
             {
-                Console.WriteLine("You have not any potion!");
+                Console.WriteLine("You have not any potion!\n");
             }
         }
 
         public void UsePokeball(Pokemon wildPokemon)
         {
-            if (wildPokemon.HP < 20 || wildPokemon.HP > 0)
+            if (wildPokemon.HP < 20 && wildPokemon.HP > 0)
             {
-                Console.WriteLine($"You catched {wildPokemon.name.english}!");
+                Console.WriteLine($"You catched {wildPokemon.name.english}!\n");
                 this.Pokemons.Add(wildPokemon);
                 this.Pokeballs--;
                 Menu.MainActions(this);
             }
             else
             {
-                Console.WriteLine($"You can not catch {wildPokemon.name.english}! ");
+                Console.WriteLine($"You can not catch {wildPokemon.name.english}!\n");
             }
         }
 
@@ -68,7 +68,7 @@ namespace PokemonGame.Trainers
             string trainerInfo = $"Name: {this.Nickname}\n";
             foreach (var item in this.Pokemons)
             {
-                trainerInfo += $"-{item.name.english}";
+                trainerInfo += $"-{item.name.english}\n";
             }
             return trainerInfo;
         }

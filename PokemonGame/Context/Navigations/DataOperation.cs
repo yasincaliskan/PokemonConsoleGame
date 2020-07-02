@@ -17,6 +17,7 @@ namespace PokemonGame.GameContext.Navigations
         {
             string json = JsonConvert.SerializeObject(trainer);
             System.IO.File.WriteAllText(savedFilePath + "\\savedFiles\\trainer.json", json);
+            System.Environment.Exit(1);
         }
 
         public static Trainer LoadGame()

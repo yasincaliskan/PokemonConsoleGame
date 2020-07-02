@@ -39,7 +39,7 @@ namespace PokemonGame.GameContext.Navigations
             Console.Write("Please enter your nickname: ");
             trainer.Nickname = Console.ReadLine();
             Console.WriteLine($"Hi {trainer.Nickname}!");
-            Console.WriteLine("Please select your first Pokemon from Professor Oak.");
+            Console.WriteLine("Please select your first Pokemon from Professor Oak.\n");
 
             List<Pokemon> initialPokemons = Creation.StartingPokemons();
             foreach (var item in initialPokemons)
@@ -53,7 +53,7 @@ namespace PokemonGame.GameContext.Navigations
             choice = Convert.ToInt32(Console.ReadLine());
             Pokemon initialPokemon = initialPokemons[choice - 1];
             trainer.Pokemons.Add(initialPokemon);
-            Console.WriteLine($"Okay! {trainer.Pokemons[0].name.english} is your first Pokémon!");
+            Console.WriteLine($"Okay! {trainer.Pokemons[0].name.english} is your first Pokémon!\n");
             MainActions(trainer);
         }
 
@@ -108,8 +108,6 @@ namespace PokemonGame.GameContext.Navigations
             {
                 arenaList.Add(PlayerFactory.CreateArena(name, Creation.PlayerNames(), "Star"));
             }
-
-
 
             Console.WriteLine("Select a Arena: ");
             foreach (var item in arenaList)

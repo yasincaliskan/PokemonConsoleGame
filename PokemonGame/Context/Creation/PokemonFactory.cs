@@ -29,10 +29,6 @@ namespace PokemonGame.Context.Creation
                     Pokemon specificPokemon = pokemon;
                     return specificPokemon;
                 }
-                else
-                {
-                    Console.WriteLine("No such Pokemon found!");
-                }
             }
             return null;
         }

@@ -34,18 +34,18 @@ namespace PokemonGame.GameContext.Actions
                         UseItem.GoToBag(wildPokemon, trainer);
                         break;
                     default:
-                        Console.WriteLine("Opss! You missed your attack chance.");
+                        Console.WriteLine("Opss! You missed your attack chance.\n");
                         break;
                 }
 
                 double wildPokemonDamage = wildPokemon.CalculateDamage(wildPokemon);
                 selectedPokemon.HP -= Convert.ToInt32(wildPokemonDamage);
-                Console.WriteLine($"{wildPokemon.name.english} damaged {wildPokemonDamage}! {selectedPokemon.name.english} {selectedPokemon.HP} lives health.");
+                Console.WriteLine($"{wildPokemon.name.english} damaged {wildPokemonDamage}! {selectedPokemon.name.english} {selectedPokemon.HP} lives health.\n");
 
                 if (selectedPokemon.HP <= 0)
                 {
                     selectedPokemon.Status = false;
-                    Console.WriteLine($"{selectedPokemon.name.english} passed out!\nYou should go to PokeCenter!");
+                    Console.WriteLine($"{selectedPokemon.name.english} passed out!\nYou should go to PokeCenter!\n");
 
                     Menu.MainActions(trainer);
                     break;
@@ -53,7 +53,7 @@ namespace PokemonGame.GameContext.Actions
                 else if (wildPokemon.HP <= 0)
                 {
                     wildPokemon.Status = false;
-                    Console.WriteLine($"{wildPokemon.name.english} passed out! You win!");
+                    Console.WriteLine($"{wildPokemon.name.english} passed out! You win!\n");
                     selectedPokemon.EXP += rnd.Next(10, 20);
 
 
@@ -91,11 +91,11 @@ namespace PokemonGame.GameContext.Actions
             if (trainerPokemon.HP <= 0)
             {
                 trainerPokemon.Status = false;
-                Console.WriteLine($"{trainerPokemon.name.english} passed out!\nYou should go to PokeCenter!");
+                Console.WriteLine($"{trainerPokemon.name.english} passed out!\nYou should go to PokeCenter!\n");
             }
 
             opponentPokemon.Status = false;
-            Console.WriteLine($"{opponentPokemon.name.english} passed out! You can not catch it.");
+            Console.WriteLine($"{opponentPokemon.name.english} passed out! You can not catch it.\n");
             opponentPokemon.EXP += rnd.Next(10, 20);
 
         }
@@ -104,14 +104,14 @@ namespace PokemonGame.GameContext.Actions
         {
             double trainerDamage = trainerPokemon.CalculateDamage(opponentPokemon);
             opponentPokemon.HP -= Convert.ToInt32(trainerDamage);
-            Console.WriteLine($"{trainerPokemon.name.english} damaged {trainerDamage}! {opponentPokemon.name.english} {opponentPokemon.HP} lives health.");
+            Console.WriteLine($"{trainerPokemon.name.english} damaged {trainerDamage}! {trainerPokemon.name.english} {trainerPokemon.HP} lives health.");
         }
 
         public static void OpponentAttack(Pokemon trainerPokemon, Pokemon opponentPokemon)
         {
             double opponentDamage = opponentPokemon.CalculateDamage(opponentPokemon);
             trainerPokemon.HP -= Convert.ToInt32(opponentDamage);
-            Console.WriteLine($"{opponentPokemon.name.english} damaged {opponentDamage}! {trainerPokemon.name.english} {trainerPokemon.HP} lives health.");
+            Console.WriteLine($"{opponentPokemon.name.english} damaged {opponentDamage}! {opponentPokemon.name.english} {opponentPokemon.HP} lives health.\n");
 
 
         }
@@ -119,7 +119,7 @@ namespace PokemonGame.GameContext.Actions
         public static void HuntWildPokemon(Trainer trainer)
         {
             Pokemon wildPokemon = PokemonFactory.CreateWildPokemon();
-            Console.WriteLine($"Hey! It's a {wildPokemon.name.english}.");
+            Console.WriteLine($"Hey! It's a {wildPokemon.name.english}.\n");
             Battle(wildPokemon, trainer);
         }
 

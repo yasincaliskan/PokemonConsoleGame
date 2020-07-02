@@ -30,12 +30,10 @@ namespace PokemonGame.Places
         {
             List<Pokemon> trainerPokemons = new List<Pokemon>();
             trainerPokemons = trainer.Pokemons;
-
+            int index = 1;
             Console.WriteLine("Your pokemons are healed!");
             foreach (var item in trainerPokemons)
             {
-               
-                int index = 1;
                 item.HP = PokemonFactory.CreateSpecificPokemon(item.name.english).HP;
                 Console.WriteLine($"{index}. {item.name.english} - {item.HP} HP");
                 index++;
